@@ -56,11 +56,11 @@
                                     @foreach ($courses as $course)
                                         <tr>
                                             <td>{{ $course->title }}</td>
-                                            <td>Accountant</td>
-                                            <td>Tokyo</td>
-                                            <td>63</td>
-                                            <td>2011/07/25</td>
-                                            <td>$170,750</td>
+                                            <td>{{ $course->categoryF->title }}</td>
+                                            <td>{{ $course->price }}</td>
+                                            <td>{{ $course->class->title }}</td>
+                                            <td>{{ $course->teacher->name }}</td>
+                                            <td></td>
                                         </tr>
                                     @endforeach
                                 </tbody>
