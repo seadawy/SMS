@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\Managercontroller;
+use App\Http\Controllers\Admin\Teachercontroller;
 use App\Http\Controllers\CourseController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,11 +18,11 @@ Route::controller(Managercontroller::class)->group(function () {
     Route::get('/manager', 'index')->name('manager');
     Route::get('/manager/create', 'create')->name('manager.create');
     Route::post('/manager', 'store')->name('manager.store');
-    //Route::get('/manager/{id}', 'show')->name('manager.show');
     Route::get('/manager/{id}/edit', 'edit')->name('manager.edit');
     Route::put('/manager/{id}', 'update')->name('manager.update');
     Route::delete('/manager/{id}', 'destroy')->name('manager.destroy');
 });
+Route::resource("teacher" ,Teachercontroller::class);
 
 Route::controller(CourseController::class)->group(function () {
     Route::get('/Courses', 'index')->name('course');

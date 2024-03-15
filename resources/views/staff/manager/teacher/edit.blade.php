@@ -1,5 +1,5 @@
 @extends('layout.manager.master')
-@section('title', 'Add manager')
+@section('title', 'Edit manager')
 
 @section('moreCss')
     <link href="{{ asset('assets/extra-libs/datatables.net-bs4/css/dataTables.bootstrap4.css') }}" rel="stylesheet">
@@ -8,19 +8,12 @@
 @section('content')
     <div class="content-wrapper" style="min-height: 2171.31px;">
         <!-- Content Header (Page header) -->
-        <section class="content-header m-md-3" >
-            <div class="col-7 align-self-center">
-                <h4 class="page-title text-truncate text-dark font-weight-medium mb-1">Add Manager</h4>
-                <div class="d-flex align-items-center">
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb m-0 p-0">
-                            <li class="breadcrumb-item">
-                                <a href="{{ route('dashboard') }}" class="text-muted">dashboard</a>
-                            </li>
-                            <li class="breadcrumb-item text-muted" aria-current="page">Manager</li>
-                            <li class="breadcrumb-item active" aria-current="page">Add</li>
-                        </ol>
-                    </nav>
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>Edit manager</h1>
+                    </div>
                 </div>
             </div><!-- /.container-fluid -->
         </section>
@@ -44,25 +37,26 @@
                         <div class="card card-primary">
                             <!-- /.card-header -->
                             <!-- form start -->
-                            <form action="{{route('manager.store')}}" method="POST">
+                            <form action="{{route('manager.update',$data->userId)}}" method="POST">
                                 @csrf
+                                @method('PUT')
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Name </label>
-                                        <input type="text" name="name" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                                        <input type="text" name="name" value="{{$data->name}}" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Email address</label>
-                                        <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                                        <input type="email" name="email" value="{{$data->email}}" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
                                     </div>
                                     <div class="form-group">
-                                        <label for="exampleInputPassword1">Password</label>
-                                        <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                                        <label for="exampleInputEmail1">created at</label>
+                                        <input  name="created_at" value="{{$data->created_at}}" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
                                     </div>
                                 </div>
                                 <!-- /.card-body -->
                                 <div class="card-footer">
-                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <button type="submit" class="btn btn-primary">Edit</button>
                                 </div>
                             </form>
                         </div>

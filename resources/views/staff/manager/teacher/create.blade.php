@@ -8,19 +8,12 @@
 @section('content')
     <div class="content-wrapper" style="min-height: 2171.31px;">
         <!-- Content Header (Page header) -->
-        <section class="content-header m-md-3" >
-            <div class="col-7 align-self-center">
-                <h4 class="page-title text-truncate text-dark font-weight-medium mb-1">Add Manager</h4>
-                <div class="d-flex align-items-center">
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb m-0 p-0">
-                            <li class="breadcrumb-item">
-                                <a href="{{ route('dashboard') }}" class="text-muted">dashboard</a>
-                            </li>
-                            <li class="breadcrumb-item text-muted" aria-current="page">Manager</li>
-                            <li class="breadcrumb-item active" aria-current="page">Add</li>
-                        </ol>
-                    </nav>
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>Add manager</h1>
+                    </div>
                 </div>
             </div><!-- /.container-fluid -->
         </section>

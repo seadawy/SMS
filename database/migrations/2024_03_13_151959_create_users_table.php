@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id('userRoleId');
             $table->unsignedBigInteger('userId');
-            $table->foreign('userId')->references('userId')->on('staff');
             $table->string('role')->comment('admin, teacher, parent, student');
             $table->timestamps();
         });
