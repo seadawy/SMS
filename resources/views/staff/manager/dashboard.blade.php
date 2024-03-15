@@ -1,4 +1,4 @@
-@extends('layout.master')
+@extends('layout.manager.master')
 
 @section('title', 'hme')
 
@@ -16,7 +16,7 @@
                 <div class="d-flex align-items-center">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb m-0 p-0">
-                            <li class="breadcrumb-item"><a href="index.html">Dashboard</a>
+                            <li class="breadcrumb-item"><a href="{{route('manager.dashboard')}}">Dashboard</a>
                             </li>
                         </ol>
                     </nav>

@@ -1,5 +1,5 @@
-@extends('layout.master')
-@section('title', 'Manager List')
+@extends('layout.manager.master')
+@section('title', 'manager List')
 
 @section('moreCss')
     <link href="{{ asset('assets/extra-libs/datatables.net-bs4/css/dataTables.bootstrap4.css') }}" rel="stylesheet">
@@ -9,27 +9,16 @@
     <div class="page-breadcrumb">
         <div class="row">
             <div class="col-7 align-self-center">
-                <h4 class="page-title text-truncate text-dark font-weight-medium mb-1">Coures Management</h4>
+                <h4 class="page-title text-truncate text-dark font-weight-medium mb-1">Manager management</h4>
                 <div class="d-flex align-items-center">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb m-0 p-0">
                             <li class="breadcrumb-item">
-                                <a href="{{ route('dashboard') }}" class="text-muted">dashboard</a>
+                                <a href="{{ route('manager.dashboard') }}" class="text-muted">dashboard</a>
                             </li>
-                            <li class="breadcrumb-item text-muted" aria-current="page">courses</li>
-                            <li class="breadcrumb-item active" aria-current="page">manage</li>
+                            <li class="breadcrumb-item text-muted" aria-current="page">Manager</li>
                         </ol>
                     </nav>
-                </div>
-            </div>
-            <div class="col-5 align-self-center">
-                <div class="customize-input float-right">
-                    <select
-                        class="custom-select custom-select-set form-control bg-white border-0 custom-shadow custom-radius">
-                        <option selected>Aug 19</option>
-                        <option value="1">July 19</option>
-                        <option value="2">Jun 19</option>
-                    </select>
                 </div>
             </div>
         </div>
@@ -56,6 +45,16 @@
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $man->name }}</td>
                                         <td>{{ $man->email }}</td>
+                                        <td>
+                                            <div class="btn-group" role="group" aria-label="Basic example">
+                                                <a href="{{ route('manager.edit',$man->userId)}}" type="button" class="btn btn-warning">Edit</a>
+                                                <form action="{{ route('manager.destroy',$man->userId) }}" method="POST" type="button" class="btn btn-danger p-0" onsubmit="return confirm('Delete?')">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button class="btn btn-danger m-0">Delete</button>
+                                                </form>
+                                            </div>
+                                        </td>
                                     </tr>
                                 @endforeach
                                 </tbody>
