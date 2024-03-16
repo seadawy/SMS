@@ -13,7 +13,7 @@ Route::get('/courses', function ($id) {
 });
 
 Route::controller(Managercontroller::class)->group(function () {
-    Route::get('/manager/dashboard','dashboard')->name('manager.dashboard');
+    Route::get('/manager/dashboard', 'dashboard')->name('manager.dashboard');
     Route::get('/manager', 'index')->name('manager');
     Route::get('/manager/create', 'create')->name('manager.create');
     Route::post('/manager', 'store')->name('manager.store');
@@ -24,6 +24,11 @@ Route::controller(Managercontroller::class)->group(function () {
 });
 
 Route::controller(CourseController::class)->group(function () {
-    Route::get('/Courses', 'index')->name('course');
-    Route::post('/orders', 'store');
+    Route::get('Staff/Courses', 'index')->name('Staffcourse');
+
+    Route::get('Staff/Courses/Create', 'create')->name('Staffcourse.create');
+    Route::post('/Staff/Courses', 'store')->name('Staffcourse.store');
+
+    Route::get('Staff/Courses/{id}/edit', 'edit')->name('Staffcourse.edit');
+    Route::get('Staff/courses/{id}/', 'show')->name('Staffcourse.show');
 });
