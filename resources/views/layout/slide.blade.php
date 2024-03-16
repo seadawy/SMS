@@ -17,12 +17,12 @@
                     </a>
                     <ul aria-expanded="false" class="collapse first-level base-level-line">
                         <li class="sidebar-item">
-                            <a href="{{ route('course') }}" class="sidebar-link">
+                            <a href="{{ route('Staffcourse') }}" class="sidebar-link">
                                 <span class="hide-menu"> Manage Courses </span>
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="form-input-grid.html" class="sidebar-link">
+                            <a href="{{ route('Staffcourse.create') }}" class="sidebar-link">
                                 <span class="hide-menu"> Create Course </span>
                             </a>
                         </li>
