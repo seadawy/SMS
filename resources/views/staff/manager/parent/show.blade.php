@@ -1,5 +1,5 @@
 @extends('layout.manager.master')
-@section('title', 'Teacher List')
+@section('title', 'Parent List')
 
 @section('moreCss')
     <link href="{{ asset('assets/extra-libs/datatables.net-bs4/css/dataTables.bootstrap4.css') }}" rel="stylesheet">
@@ -9,14 +9,14 @@
     <div class="page-breadcrumb">
         <div class="row">
             <div class="col-7 align-self-center">
-                <h4 class="page-title text-truncate text-dark font-weight-medium mb-1">Teacher management</h4>
+                <h4 class="page-title text-truncate text-dark font-weight-medium mb-1">Parent management</h4>
                 <div class="d-flex align-items-center">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb m-0 p-0">
                             <li class="breadcrumb-item">
                                 <a href="{{ route('manager.dashboard') }}" class="text-muted">dashboard</a>
                             </li>
-                            <li class="breadcrumb-item text-muted" aria-current="page">Teacher</li>
+                            <li class="breadcrumb-item text-muted" aria-current="page">Parent</li>
                         </ol>
                     </nav>
                 </div>
@@ -36,6 +36,9 @@
                                     <th>#</th>
                                     <th>Name</th>
                                     <th>email</th>
+                                    <th>Phone</th>
+                                    <th>Address</th>
+                                    <th>Active</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
@@ -43,12 +46,15 @@
                                 @foreach ($data as $man)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $man->name }}</td>
+                                        <td>{{ $man->fullName }}</td>
                                         <td>{{ $man->email }}</td>
+                                        <td>{{ $man->phone }}</td>
+                                        <td>{{ $man->address }}</td>
+                                        <td>{{ $man->isActive ? 'Active' : 'Not Active' }}</td>
                                         <td>
                                             <div class="btn-group" role="group" aria-label="Basic example">
-                                                <a href="{{ route('teacher.edit',$man->userId)}}" type="button" class="btn btn-warning">Edit</a>
-                                                <form action="{{ route('teacher.destroy',$man->userId) }}" method="POST" type="button" class="btn btn-danger p-0" onsubmit="return confirm('Delete?')">
+                                                <a href="{{ route('parent.edit',$man->parentId)}}" type="button" class="btn btn-warning">Edit</a>
+                                                <form action="{{ route('parent.destroy',$man->parentId) }}" method="POST" type="button" class="btn btn-danger p-0" onsubmit="return confirm('Delete?')">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button class="btn btn-danger m-0">Delete</button>

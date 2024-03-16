@@ -8,14 +8,10 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class Teachercontroller extends Controller
+class Studentcontroller extends Controller
 {
     public function index(){
-        $data=DB::table('users')
-            ->where('role','teacher')
-            ->join('staff', 'staff.userId', '=', 'users.userId')
-            ->select('staff.*')
-            ->get();
+        $data;
         return view('staff.manager.teacher.show',['data'=>$data]);
     }
     public function create(){
