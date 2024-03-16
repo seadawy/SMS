@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\Categoriescontroller;
 use App\Http\Controllers\Admin\Classescontroller;
 use App\Http\Controllers\Admin\Managercontroller;
 use App\Http\Controllers\Admin\Parentcontroller;
@@ -60,6 +61,15 @@ Route::controller(Studentcontroller::class)->group(function () {
     Route::get('/student/{id}/edit', 'edit')->name('student.edit');
     Route::put('/student/{id}', 'update')->name('student.update');
     Route::delete('/student/{id}', 'destroy')->name('student.destroy');
+});
+// url category
+Route::controller(Categoriescontroller::class)->group(function () {
+    Route::get('/category', 'index')->name('category');
+    Route::get('/category/create', 'create')->name('category.create');
+    Route::post('/category', 'store')->name('category.store');
+    Route::get('/category/{id}/edit', 'edit')->name('category.edit');
+    Route::put('/category/{id}', 'update')->name('category.update');
+    Route::delete('/category/{id}', 'destroy')->name('category.destroy');
 });
 
 Route::controller(CourseController::class)->group(function () {
