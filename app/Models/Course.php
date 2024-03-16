@@ -22,5 +22,13 @@ class Course extends Model
     {
         return $this->belongsTo(Staff::class, 'createdBy', 'userId');
     }
+    protected $primaryKey = 'courseId';
+    protected $fillable = [
+        'title',
+        'category',
+        'price',
+        'inClass',
+        'createdBy',
+    ];
 
 }

@@ -28,9 +28,9 @@
         </div>
     </div>
 
-    <section class="content">
+    <div class="container-fluid">
         @if ($errors->any())
-            <div class="alert alert-danger">
+            <div class="bg-danger text-white py-1">
                 <ul>
                     @foreach ($errors->all() as $error)
                         <li>{{ $error }}</li>
@@ -38,47 +38,61 @@
                 </ul>
             </div>
         @endif
-        <div class="container-fluid">
-            <div class="row">
-                <!-- left column -->
-                <div class="col-md-12">
-                    <!-- jquery validation -->
-                    <div class="card card-primary">
-                        <!-- /.card-header -->
-                        <!-- form start -->
-                        <form
-                            action="{{ isset($course) ? route('Staffcourse.update', $course->id) : route('Staffcourse.store') }}"
-                            method="POST">
-                            @csrf
-                            @if (isset($course))
-                                @method('PUT')
-                            @endif
-                            <div class="card-body">
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Name </label>
-                                    <input type="text" name="name" value="{{ isset($course) ? $course->title : '' }}"
-                                        class="form-control" id="exampleInputEmail1" placeholder="Enter email">
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Email address</label>
-                                    <input type="email" name="email" value="{{ isset($course) ? $course->title : '' }}"
-                                        class="form-control" id="exampleInputEmail1" placeholder="Enter email">
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">created at</label>
-                                    <input name="created_at" value="{{ isset($course) ? $course->title : '' }}"
-                                        class="form-control" id="exampleInputEmail1" placeholder="Enter email">
-                                </div>
+
+        <div class="row">
+            <!-- left column -->
+            <div class="col-md-12">
+                <!-- jquery validation -->
+                <div class="card card-primary">
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <form
+                        action="{{ isset($course) ? route('Staffcourse.update', $course->id) : route('Staffcourse.store') }}"
+                        method="POST">
+                        @csrf
+                        @if (isset($course))
+                            @method('PUT')
+                        @endif
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="exampleInputtitle1">Title </label>
+                                <input type="text" name="title" value="{{ isset($course) ? $course->title : '' }}"
+                                    class="form-control" id="exampleInputtitle1" placeholder="Enter course title">
                             </div>
-                            <!-- /.card-body -->
-                            <div class="card-footer">
-                                <button type="submit"
-                                    class="btn btn-primary">{{ isset($course) ? 'edit' : 'create' }}</button>
+                            <div class="form-group">
+                                <label for="exampleInputPrice1">Price</label>
+                                <input type="text" name="price" value="{{ isset($course) ? $course->title : '' }}"
+                                    class="form-control" id="exampleInputEmail1" placeholder="Enter Price">
                             </div>
-                        </form>
-                    </div>
+                            <div class="form-group">
+                                <label class="mr-sm-2" for="inlineFormCustomSelect">Select Category</label>
+                                <select class="custom-select mr-sm-2" name="category" id="inlineFormCustomSelect">
+                                    <option selected="">Choose...</option>
+                                    @foreach ($categorys as $category)
+                                        <option value="{{ $category->categoryId }}">{{ $category->title }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="mr-sm-2" for="inlineFormCustomSelect">Class Added To</label>
+                                <select class="custom-select mr-sm-2" name="inClass" id="inlineFormCustomSelect">
+                                    <option selected="">Choose...</option>
+                                    @foreach ($classes as $clas)
+                                        <option value="{{ $clas->classId }}">{{ $clas->title }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <input type="hidden" name="createdBy" value="1">
+                        </div>
+                        <!-- /.card-body -->
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-primary ">
+                                {{ isset($course) ? 'edit' : 'create' }}
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 @endsection

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
+use App\Models\ClassModel;
 use App\Models\Course;
 use Illuminate\Http\Request;
 
@@ -21,7 +23,10 @@ class CourseController extends Controller
      */
     public function create()
     {
-        return view('staff.coursesForm');
+
+        $catorgys = Category::all();
+        $classes = ClassModel::all();
+        return view('staff.coursesForm', ['categorys' => $catorgys, 'classes' => $classes]);
     }
 
     /**
@@ -29,7 +34,15 @@ class CourseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $val = $request->validate([
+            'title' => 'required',
+            'price' => 'required|numeric',
+            'inClass' => 'required',
+            'category' => 'required',
+            'createdBy' => 'required',
+        ]);
+        Course::create($val);
+        return redirect()->route('Staffcourse');
     }
 
     /**
@@ -61,6 +74,7 @@ class CourseController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Course::destroy($id);
+        return redirect()->route('Staffcourse');
     }
 }

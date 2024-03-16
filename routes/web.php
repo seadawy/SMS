@@ -22,7 +22,7 @@ Route::controller(Managercontroller::class)->group(function () {
     Route::put('/manager/{id}', 'update')->name('manager.update');
     Route::delete('/manager/{id}', 'destroy')->name('manager.destroy');
 });
-Route::resource("teacher" ,Teachercontroller::class);
+Route::resource("teacher", Teachercontroller::class);
 
 Route::controller(CourseController::class)->group(function () {
     Route::get('Staff/Courses', 'index')->name('Staffcourse');
@@ -31,5 +31,6 @@ Route::controller(CourseController::class)->group(function () {
     Route::post('/Staff/Courses', 'store')->name('Staffcourse.store');
 
     Route::get('Staff/Courses/{id}/edit', 'edit')->name('Staffcourse.edit');
-    Route::get('Staff/courses/{id}/', 'show')->name('Staffcourse.show');
+    //Route::get('Staff/courses/{id}/', 'show')->name('Staffcourse.show');
+    Route::delete('Staff/Courses/{id}', 'destroy')->name('Staffcourse.destroy');
 });
