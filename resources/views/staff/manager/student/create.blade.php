@@ -1,5 +1,5 @@
 @extends('layout.manager.master')
-@section('title', 'Edit manager')
+@section('title', isset($teacher) ? 'Edit Teacher' : 'Add Teacher')
 
 @section('moreCss')
     <link href="{{ asset('assets/extra-libs/datatables.net-bs4/css/dataTables.bootstrap4.css') }}" rel="stylesheet">
@@ -12,7 +12,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Edit manager</h1>
+                        <h1>{{ isset($teacher) ? 'Edit Teacher' : 'Add Teacher' }}</h1>
                     </div>
                 </div>
             </div><!-- /.container-fluid -->
@@ -37,26 +37,26 @@
                         <div class="card card-primary">
                             <!-- /.card-header -->
                             <!-- form start -->
-                            <form action="{{route('manager.update',$data->userId)}}" method="POST">
+                            <form action="{{ isset($teacher) ? route('teacher.update', $teacher->userId) : route('teacher.store') }}" method="POST">
                                 @csrf
-                                @method('PUT')
+                                 @if( isset($teacher)) @method('PUT') @endif
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Name </label>
-                                        <input type="text" name="name" value="{{$data->name}}" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                                        <input type="text" name="name" class="form-control" id="exampleInputEmail1" placeholder="Enter email" value="{{ isset($teacher) ? $teacher->name : '' }}">
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Email address</label>
-                                        <input type="email" name="email" value="{{$data->email}}" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                                        <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email" value="{{ isset($teacher) ? $teacher->email : '' }}">
                                     </div>
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">created at</label>
-                                        <input  name="created_at" value="{{$data->created_at}}" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                                        <label for="exampleInputPassword1" style="display: {{ isset($teacher) ? 'none':''}}">Password</label>
+                                        <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password" style="display: {{ isset($teacher) ? 'none':"" }}" >
                                     </div>
                                 </div>
                                 <!-- /.card-body -->
                                 <div class="card-footer">
-                                    <button type="submit" class="btn btn-primary">Edit</button>
+                                    <button type="submit" class="btn btn-primary">{{ isset($teacher) ? 'Update' : 'Submit' }}</button>
                                 </div>
                             </form>
                         </div>
@@ -65,7 +65,6 @@
                     <!--/.col (left) -->
                     <!-- right column -->
                     <div class="col-md-6">
-
                     </div>
                     <!--/.col (right) -->
                 </div>
