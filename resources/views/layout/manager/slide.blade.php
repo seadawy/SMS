@@ -100,6 +100,24 @@
                         </li>
                     </ul>
                 </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link has-arrow" href="javascript:void(0)" aria-expanded="false">
+                        <i class="nav-icon far fa-user"></i>
+                        <span class="hide-menu">Categories</span>
+                    </a>
+                    <ul aria-expanded="false" class="collapse first-level base-level-line">
+                        <li class="sidebar-item">
+                            <a href="{{ route('category') }}" class="sidebar-link">
+                                <span class="hide-menu"> Manage category </span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="{{route('category.create')}}" class="sidebar-link">
+                                <span class="hide-menu"> Create category </span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
             </ul>
         </nav>
     </div>
