@@ -4,46 +4,51 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\classes;
-use App\Models\Staff;
+use function Laravel\Prompts\table;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use function Laravel\Prompts\table;
 
 class Classescontroller extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $data = DB::table('classes')
             ->join('staff', 'staff.userId', '=', 'classes.createdBy')
-            ->select('staff.*','classes.*')
+            ->select('staff.*', 'classes.*')
             ->get();
         //dd($data);
-        return view('staff.manager.class.show',['data'=>$data]);
+        return view('staff.manager.class.show', ['data' => $data]);
     }
-    public function create(){
+    public function create()
+    {
         return view('staff.manager.class.create');
     }
     // dont forget th created by
-    public function store(Request $re){
+    public function store(Request $re)
+    {
         $val = $re->validate([
-            'title'=>'required',
+            'title' => 'required',
         ]);
-        $val['createdBy']=6;
-         classes::create($val);
+        $val['createdBy'] = 2;
+        classes::create($val);
         return redirect()->route('classes');
     }
-    public function edit($userId){
-        $data = classes::where('classId','=',$userId)->first();
-        return view('staff.manager.class.create',['classes'=>$data]);
+    public function edit($userId)
+    {
+        $data = classes::where('classId', '=', $userId)->first();
+        return view('staff.manager.class.create', ['classes' => $data]);
     }
-    public function update($id ,Request $re){
+    public function update($id, Request $re)
+    {
         $val = $re->validate([
-            'title'=>'required',
+            'title' => 'required',
         ]);
-        classes::where('classId','=',$id)->update($val);
+        classes::where('classId', '=', $id)->update($val);
         return redirect()->route('classes');
     }
-    public function destroy($id){
-        classes::where('classId','=',$id)->delete();
+    public function destroy($id)
+    {
+        classes::where('classId', '=', $id)->delete();
         return redirect()->route('classes');
     }
 }
