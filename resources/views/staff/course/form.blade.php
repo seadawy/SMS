@@ -14,10 +14,10 @@
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb m-0 p-0">
                             <li class="breadcrumb-item">
-                                <a href="{{ route('dashboard') }}" class="text-muted">dashboard</a>
+                                <a href="{{ route('dashboard') }}" class="text-muted">Dashboard</a>
                             </li>
                             <li class="breadcrumb-item text-muted" aria-current="page">
-                                <a href="{{ route('Staffcourse') }}" class="text-muted">courses</a>
+                                <a href="{{ route('Staffcourse') }}" class="text-muted">Courses</a>
                             </li>
                             <li class="breadcrumb-item active" aria-current="page">
                                 {{ isset($course) ? 'Edit Course' : 'Add Course' }}</li>
@@ -40,14 +40,10 @@
         @endif
 
         <div class="row">
-            <!-- left column -->
             <div class="col-md-12">
-                <!-- jquery validation -->
                 <div class="card card-primary">
-                    <!-- /.card-header -->
-                    <!-- form start -->
                     <form
-                        action="{{ isset($course) ? route('Staffcourse.update', $course->id) : route('Staffcourse.store') }}"
+                        action="{{ isset($course) ? route('Staffcourse.update', $course->courseId) : route('Staffcourse.store') }}"
                         method="POST">
                         @csrf
                         @if (isset($course))
@@ -61,24 +57,29 @@
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputPrice1">Price</label>
-                                <input type="text" name="price" value="{{ isset($course) ? $course->title : '' }}"
+                                <input type="text" name="price" value="{{ isset($course) ? $course->price : '' }}"
                                     class="form-control" id="exampleInputEmail1" placeholder="Enter Price">
                             </div>
                             <div class="form-group">
                                 <label class="mr-sm-2" for="inlineFormCustomSelect">Select Category</label>
                                 <select class="custom-select mr-sm-2" name="category" id="inlineFormCustomSelect">
-                                    <option selected="">Choose...</option>
+                                    <option value="" selected>Choose...</option>
                                     @foreach ($categorys as $category)
-                                        <option value="{{ $category->categoryId }}">{{ $category->title }}</option>
+                                        <option value="{{ $category->categoryId }}"
+                                            @if (isset($course)) @selected($category->categoryId == $course->category) @endif>
+                                            {{ $category->title }}</option>
                                     @endforeach
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label class="mr-sm-2" for="inlineFormCustomSelect">Class Added To</label>
                                 <select class="custom-select mr-sm-2" name="inClass" id="inlineFormCustomSelect">
-                                    <option selected="">Choose...</option>
+                                    <option value="" selected>Choose...</option>
                                     @foreach ($classes as $clas)
-                                        <option value="{{ $clas->classId }}">{{ $clas->title }}</option>
+                                        <option value="{{ $clas->classId }}"
+                                            @if (isset($course)) @selected($clas->classId == $course->inClass) @endif>
+                                            {{ $clas->title }}
+                                        </option>
                                     @endforeach
                                 </select>
                             </div>

@@ -15,7 +15,7 @@ class CourseController extends Controller
     public function index()
     {
         $data = Course::all();
-        return view('staff.coursesManage', ['courses' => $data]);
+        return view('staff.course.manage', ['courses' => $data]);
     }
 
     /**
@@ -23,10 +23,9 @@ class CourseController extends Controller
      */
     public function create()
     {
-
         $catorgys = Category::all();
         $classes = ClassModel::all();
-        return view('staff.coursesForm', ['categorys' => $catorgys, 'classes' => $classes]);
+        return view('staff.course.form', ['categorys' => $catorgys, 'classes' => $classes]);
     }
 
     /**
@@ -58,7 +57,11 @@ class CourseController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $catorgys = Category::all();
+        $classes = ClassModel::all();
+        $course = Course::findOrFail($id);
+        return view('staff.course.form', ['categorys' => $catorgys, 'classes' => $classes, 'course' => $course]);
+
     }
 
     /**
@@ -66,7 +69,16 @@ class CourseController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $val = $request->validate([
+            'title' => 'required',
+            'price' => 'required|numeric',
+            'inClass' => 'required',
+            'category' => 'required',
+            'createdBy' => 'required',
+        ]);
+        $item = Course::findOrFail($id);
+        $item->update($val);
+        return redirect()->route('Staffcourse');
     }
 
     /**

@@ -14,10 +14,10 @@
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb m-0 p-0">
                             <li class="breadcrumb-item">
-                                <a href="{{ route('dashboard') }}" class="text-muted">dashboard</a>
+                                <a href="{{ route('dashboard') }}" class="text-muted">Dashboard</a>
                             </li>
-                            <li class="breadcrumb-item text-muted" aria-current="page">courses</li>
-                            <li class="breadcrumb-item active" aria-current="page">manage</li>
+                            <li class="breadcrumb-item text-muted" aria-current="page">Courses</li>
+                            <li class="breadcrumb-item active" aria-current="page">Manage</li>
                         </ol>
                     </nav>
                 </div>
@@ -56,7 +56,7 @@
                                                     <i class=" fas fa-edit"></i>
                                                 </a>
 
-                                                <a href="{{ route('Staffcourse.edit', $course->courseId) }}"
+                                                <a href="{{ route('StaffLesson', $course->courseId) }}"
                                                     class="btn btn-rounded btn-outline-info">
                                                     <i class=" fas fa-eye"></i>
                                                 </a>

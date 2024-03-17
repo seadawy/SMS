@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\Parentcontroller;
 use App\Http\Controllers\Admin\Studentcontroller;
 use App\Http\Controllers\Admin\Teachercontroller;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\LessonController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -71,14 +72,21 @@ Route::controller(Categoriescontroller::class)->group(function () {
     Route::put('/category/{id}', 'update')->name('category.update');
     Route::delete('/category/{id}', 'destroy')->name('category.destroy');
 });
-
+// url course admin pov
 Route::controller(CourseController::class)->group(function () {
     Route::get('Staff/Courses', 'index')->name('Staffcourse');
-
     Route::get('Staff/Courses/Create', 'create')->name('Staffcourse.create');
     Route::post('/Staff/Courses', 'store')->name('Staffcourse.store');
-
     Route::get('Staff/Courses/{id}/edit', 'edit')->name('Staffcourse.edit');
-    //Route::get('Staff/courses/{id}/', 'show')->name('Staffcourse.show');
+    Route::put('Staff/Courses/{id}', 'update')->name('Staffcourse.update');
     Route::delete('Staff/Courses/{id}', 'destroy')->name('Staffcourse.destroy');
+});
+// url lesson admin pov
+Route::controller(LessonController::class)->group(function () {
+    Route::get('Staff/Course/{id}/Lesson/', 'index')->name('StaffLesson');
+    Route::get('Staff/Lesson/Create', 'create')->name('StaffLesson.create');
+    Route::post('/Staff/Lesson', 'store')->name('StaffLesson.store');
+    Route::get('Staff/Lesson/{id}/edit', 'edit')->name('StaffLesson.edit');
+    Route::put('Staff/Lesson/{id}', 'update')->name('StaffLesson.update');
+    Route::delete('Staff/Lesson/{id}', 'destroy')->name('StaffLesson.destroy');
 });
