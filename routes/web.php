@@ -83,10 +83,11 @@ Route::controller(CourseController::class)->group(function () {
 });
 // url lesson admin pov
 Route::controller(LessonController::class)->group(function () {
-    Route::get('Staff/Course/{id}/Lesson/', 'index')->name('StaffLesson');
-    Route::get('Staff/Lesson/Create', 'create')->name('StaffLesson.create');
+    Route::get('/Staff/Course/Lesson/', 'indexAll')->name('StaffLesson');
+    Route::get('/Staff/Course/{id}/Lesson/', 'index')->name('StaffLesson.course');
+    Route::get('/Staff/Lesson/Create', 'create')->name('StaffLesson.create');
     Route::post('/Staff/Lesson', 'store')->name('StaffLesson.store');
-    Route::get('Staff/Lesson/{id}/edit', 'edit')->name('StaffLesson.edit');
-    Route::put('Staff/Lesson/{id}', 'update')->name('StaffLesson.update');
-    Route::delete('Staff/Lesson/{id}', 'destroy')->name('StaffLesson.destroy');
+    Route::get('/Staff/Lesson/{id}/edit', 'edit')->name('StaffLesson.edit');
+    Route::put('/Staff/Lesson/{id}', 'update')->name('StaffLesson.update');
+    Route::delete('/Staff/Lesson/{id}', 'destroy')->name('StaffLesson.destroy');
 });

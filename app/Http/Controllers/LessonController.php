@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Course;
 use App\Models\Lesson;
+use App\Models\Staff;
 use Illuminate\Http\Request;
 
 class LessonController extends Controller
@@ -11,6 +13,12 @@ class LessonController extends Controller
     /**
      * Display a listing of the resource.
      */
+    public function indexAll()
+    {
+        $data = Lesson::all();
+        return view('staff.lesson.manage', ['lessons' => $data]);
+    }
+
     public function index($id)
     {
         $data = Lesson::where('courseId', $id)->get();
@@ -22,6 +30,9 @@ class LessonController extends Controller
      */
     public function create()
     {
+        //$courses = Course::where('createdBy', current user);
+        $courses = Course::all();
+        return view('staff.lesson.form', compact('courses'));
     }
 
     /**
@@ -29,7 +40,13 @@ class LessonController extends Controller
      */
     public function store(Request $request)
     {
-
+        $validated = $request->validate([
+            'lessonTitle' => 'required',
+            'courseId' => 'required'
+        ]);
+        $validated['createdBy'] = 1;
+        Lesson::create($validated);
+        return redirect()->route('StaffLesson');
     }
 
     /**
@@ -45,7 +62,7 @@ class LessonController extends Controller
      */
     public function edit(string $id)
     {
-
+        return view('staff.lesson.form');
     }
 
     /**

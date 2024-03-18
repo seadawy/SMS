@@ -6,7 +6,7 @@
                     class="ti-menu ti-close"></i></a>
             <div class="navbar-brand">
                 <!-- Logo icon -->
-                <a href="index.html">
+                <a href="{{ route('dashboard') }}">
                     <b class="logo-icon">
                         <!-- Dark Logo icon -->
                         <img src="{{ asset('assets/images/logo-icon.png') }}" alt="homepage" class="dark-logo" />

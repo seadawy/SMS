@@ -34,7 +34,9 @@
                             <table id="zero_config" class="table table-striped table-bordered no-wrap">
                                 <thead>
                                     <tr>
+                                        <th>Sub-lessons</th>
                                         <th>Title</th>
+                                        <th>At Course</th>
                                         <th>Created By</th>
                                         <th>Created At</th>
                                         <th>Action</th>
@@ -43,35 +45,59 @@
                                 <tbody>
                                     @foreach ($lessons as $lesson)
                                         <tr>
-                                            <td>{{ $lesson->title }}</td>
-                                            <td>{{ $lesson->CreatedBy->name }}</td>
-                                            <td>{{ $lesson->created_at }}</td>
                                             <td>
-                                                <a href="{{ route('Staffcourse.edit', $course->courseId) }}"
-                                                    class="btn btn-rounded btn-outline-info">
-                                                    <i class=" fas fa-edit"></i>
-                                                </a>
+                                                <button class="btn btn-info">
+                                                    show N Sub-lessons
+                                                </button>
+                                            </td>
+                                            <td>{{ $lesson->lessonTitle }}</td>
+                                            <td>{{ $lesson->AtCourse->title }}</td>
+                                            <td>{{ $lesson->CreatedBy->name }}</td>
+                                            <td>{{ $lesson->created_at->toDateString() }}</td>
+                                            <td>
+                                                <div class="btn-group" role="group" aria-label="actions buttons">
+                                                    <a href="{{ route('Staffcourse.edit', $lesson->courseId) }}"
+                                                        class="btn btn-success font-weight-bold">
+                                                        <i class=" fas fa-plus"></i>
+                                                        sub-lesson
+                                                    </a>
+                                                    <a href="{{ route('Staffcourse.edit', $lesson->courseId) }}"
+                                                        class="btn btn-warning text-primary">
+                                                        <i class=" fas fa-eye"></i>
+                                                    </a>
+                                                    <a href="{{ route('Staffcourse.edit', $lesson->courseId) }}"
+                                                        class="btn btn-warning text-primary">
+                                                        <i class=" fas fa-edit"></i>
+                                                    </a>
 
-                                                <a href="{{ route('Staffcourse.edit', $course->courseId) }}"
-                                                    class="btn btn-rounded btn-outline-info">
-                                                    <i class=" fas fa-eye"></i>
-                                                </a>
-                                                <form method="POST" class="d-inline"
-                                                    action="{{ route('Staffcourse.destroy', $course->courseId) }}">
-
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-rounded btn-outline-danger">
-                                                        <i class="fas fa-trash-alt"></i>
-                                                    </button>
-                                                </form>
+                                                    <form action="{{ route('Staffcourse.destroy', $lesson->courseId) }}"
+                                                        method="POST" type="button" class="btn btn-danger p-0"
+                                                        onsubmit="return confirm('Delete ?')">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button class="btn btn-danger m-0">
+                                                            <i class=" fas fa-trash"></i>
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr class="child-row">
+                                            <td colspan="6">
+                                                @foreach ($lesson->SupLessons as $sup)
+                                                    {{ $sup->supTitle }}
+                                                    {{ $sup->lessonType }}
+                                                    {{ $sup->createdAt }}
+                                                @endforeach
                                             </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
                                 <tfoot>
                                     <tr>
+                                        <th>Sub Lessons</th>
                                         <th>Title</th>
+                                        <th>At Course</th>
                                         <th>Created By</th>
                                         <th>Created At</th>
                                         <th>Action</th>
@@ -90,4 +116,11 @@
 @section('moreJs')
     <script src="{{ asset('assets/extra-libs/datatables.net/js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('dist/js/pages/datatable/datatable-basic.init.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            $.ajax({
+
+            });
+        });
+    </script>
 @endsection

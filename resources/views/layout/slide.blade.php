@@ -17,13 +17,31 @@
                     </a>
                     <ul aria-expanded="false" class="collapse first-level base-level-line">
                         <li class="sidebar-item">
+                            <a href="{{ route('Staffcourse.create') }}" class="sidebar-link">
+                                <span class="hide-menu"> Create Course </span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
                             <a href="{{ route('Staffcourse') }}" class="sidebar-link">
                                 <span class="hide-menu"> Manage Courses </span>
                             </a>
                         </li>
+                    </ul>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link has-arrow" href="javascript:void(0)" aria-expanded="false">
+                        <i class="fas fa-th-list"></i>
+                        <span class="hide-menu">Lessons</span>
+                    </a>
+                    <ul aria-expanded="false" class="collapse first-level base-level-line">
                         <li class="sidebar-item">
-                            <a href="{{ route('Staffcourse.create') }}" class="sidebar-link">
-                                <span class="hide-menu"> Create Course </span>
+                            <a href="{{ route('StaffLesson.create') }}" class="sidebar-link">
+                                <span class="hide-menu"> Create Lesson </span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="{{ route('StaffLesson') }}" class="sidebar-link">
+                                <span class="hide-menu"> Manage Lessons </span>
                             </a>
                         </li>
                     </ul>
@@ -79,9 +97,9 @@
                 </li>
                 <li class="list-divider"></li>
                 <li class="nav-small-cap"><span class="hide-menu">Extra</span></li>
-                <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="{{ asset('../docs/docs.html') }}"
-                        aria-expanded="false"><i data-feather="edit-3" class="feather-icon"></i><span
-                            class="hide-menu">Documentation</span></a></li>
+                <li class="sidebar-item"> <a class="sidebar-link sidebar-link"
+                        href="{{ asset('../docs/docs.html') }}" aria-expanded="false"><i data-feather="edit-3"
+                            class="feather-icon"></i><span class="hide-menu">Documentation</span></a></li>
                 <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="authentication-login1.html"
                         aria-expanded="false"><i data-feather="log-out" class="feather-icon"></i><span
                             class="hide-menu">Logout</span></a></li>

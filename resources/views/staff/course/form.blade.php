@@ -1,10 +1,5 @@
 @extends('layout.master')
 @section('title', isset($course) ? 'Edit Course' : 'Add Course')
-
-@section('moreCss')
-    <link href="{{ asset('assets/extra-libs/datatables.net-bs4/css/dataTables.bootstrap4.css') }}" rel="stylesheet">
-@endsection
-
 @section('content')
     <div class="page-breadcrumb">
         <div class="row">
@@ -72,7 +67,7 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label class="mr-sm-2" for="inlineFormCustomSelect">Class Added To</label>
+                                <label class="mr-sm-2" for="inlineFormCustomSelect">Select Class Added To</label>
                                 <select class="custom-select mr-sm-2" name="inClass" id="inlineFormCustomSelect">
                                     <option value="" selected>Choose...</option>
                                     @foreach ($classes as $clas)
@@ -85,10 +80,9 @@
                             </div>
                             <input type="hidden" name="createdBy" value="1">
                         </div>
-                        <!-- /.card-body -->
-                        <div class="card-footer">
-                            <button type="submit" class="btn btn-primary ">
-                                {{ isset($course) ? 'edit' : 'create' }}
+                        <div class="card-footer text-right">
+                            <button type="submit" class="btn btn-primary btn btn-lg btn-primary">
+                                {{ isset($course) ? 'Update' : 'Add New' }} Course
                             </button>
                         </div>
                     </form>
