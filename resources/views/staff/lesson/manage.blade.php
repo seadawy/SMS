@@ -32,7 +32,7 @@
                     <div class="card-body">
                         <div class="table-responsive">
                             <table id="zero_config" class="table table-striped table-bordered no-wrap">
-                                <thead>
+                                <thead class="bg-primary text-white">
                                     <tr>
                                         <th>Sub-lessons</th>
                                         <th>Title</th>
@@ -84,16 +84,27 @@
                                         </tr>
                                         <tr class="child-row">
                                             <td colspan="6">
-                                                @foreach ($lesson->SupLessons as $sup)
-                                                    {{ $sup->supTitle }}
-                                                    {{ $sup->lessonType }}
-                                                    {{ $sup->createdAt }}
-                                                @endforeach
+                                                <table class="table table-sm mb-0 table-info">
+                                                    <thead class="">
+                                                        <th>Supplementary Lesson Title</th>
+                                                        <th>Lesson Type</th>
+                                                        <th>Created At</th>
+                                                    </thead>
+                                                    <tbody class="">
+                                                        @foreach ($lesson->SupLessons as $sup)
+                                                            <tr>
+                                                                <td>{{ $sup->supTitle }}</td>
+                                                                <td>{{ $sup->lessonType }}</td>
+                                                                <td>{{ $sup->createdAt }}</td>
+                                                            </tr>
+                                                        @endforeach
+                                                    </tbody>
+                                                </table>
                                             </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
-                                <tfoot>
+                                <tfoot class="bg-primary text-white">
                                     <tr>
                                         <th>Sub Lessons</th>
                                         <th>Title</th>
