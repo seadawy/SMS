@@ -31,8 +31,8 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table id="zero_config" class="table table-striped table-bordered no-wrap">
-                                <thead class="bg-primary text-white">
+                            <table id="zero_config" class="table table-bordered no-wrap">
+                                <thead>
                                     <tr>
                                         <th>Sub-lessons</th>
                                         <th>Title</th>
@@ -46,7 +46,8 @@
                                     @foreach ($lessons as $lesson)
                                         <tr>
                                             <td>
-                                                <button class="btn btn-info">
+                                                <button class="btn btn-info"
+                                                    onclick="getSupLessons({{ $lesson->lessonId }})">
                                                     show N Sub-lessons
                                                 </button>
                                             </td>
@@ -56,21 +57,21 @@
                                             <td>{{ $lesson->created_at->toDateString() }}</td>
                                             <td>
                                                 <div class="btn-group" role="group" aria-label="actions buttons">
-                                                    <a href="{{ route('Staffcourse.edit', $lesson->courseId) }}"
+                                                    <a href="{{ route('Staffcourse.edit', $lesson->lessonId) }}"
                                                         class="btn btn-success font-weight-bold">
                                                         <i class=" fas fa-plus"></i>
                                                         sub-lesson
                                                     </a>
-                                                    <a href="{{ route('Staffcourse.edit', $lesson->courseId) }}"
+                                                    <a href="{{ route('Staffcourse.edit', $lesson->lessonId) }}"
                                                         class="btn btn-warning text-primary">
                                                         <i class=" fas fa-eye"></i>
                                                     </a>
-                                                    <a href="{{ route('Staffcourse.edit', $lesson->courseId) }}"
+                                                    <a href="{{ route('StaffLesson.edit', $lesson->lessonId) }}"
                                                         class="btn btn-warning text-primary">
                                                         <i class=" fas fa-edit"></i>
                                                     </a>
 
-                                                    <form action="{{ route('Staffcourse.destroy', $lesson->courseId) }}"
+                                                    <form action="{{ route('StaffLesson.destroy', $lesson->lessonId) }}"
                                                         method="POST" type="button" class="btn btn-danger p-0"
                                                         onsubmit="return confirm('Delete ?')">
                                                         @csrf
@@ -82,29 +83,9 @@
                                                 </div>
                                             </td>
                                         </tr>
-                                        <tr class="child-row">
-                                            <td colspan="6">
-                                                <table class="table table-sm mb-0 table-info">
-                                                    <thead class="">
-                                                        <th>Supplementary Lesson Title</th>
-                                                        <th>Lesson Type</th>
-                                                        <th>Created At</th>
-                                                    </thead>
-                                                    <tbody class="">
-                                                        @foreach ($lesson->SupLessons as $sup)
-                                                            <tr>
-                                                                <td>{{ $sup->supTitle }}</td>
-                                                                <td>{{ $sup->lessonType }}</td>
-                                                                <td>{{ $sup->createdAt }}</td>
-                                                            </tr>
-                                                        @endforeach
-                                                    </tbody>
-                                                </table>
-                                            </td>
-                                        </tr>
                                     @endforeach
                                 </tbody>
-                                <tfoot class="bg-primary text-white">
+                                <tfoot>
                                     <tr>
                                         <th>Sub Lessons</th>
                                         <th>Title</th>
@@ -128,10 +109,53 @@
     <script src="{{ asset('assets/extra-libs/datatables.net/js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('dist/js/pages/datatable/datatable-basic.init.js') }}"></script>
     <script>
-        $(document).ready(function() {
+        function getSupLessons(lessonId) {
             $.ajax({
-
+                url: "{{ route('GetSupLesson', ['id' => ':id']) }}".replace(':id', lessonId),
+                method: "GET",
+                type: 'JSON',
+                success: function(res) {
+                    var parsedArray = JSON.parse(res);
+                    var subLessonsRow = document.getElementById('sub-lessons-' + lessonId);
+                    if (!subLessonsRow) {
+                        var parentRow = document.querySelector('[onclick="getSupLessons(' + lessonId + ')"]')
+                            .parentNode.parentNode;
+                        var newTr = document.createElement('tr');
+                        newTr.id = 'sub-lessons-' + lessonId;
+                        newTr.className = 'child-row';
+                        var cnt = 0;
+                        var content =
+                            `<td colspan="6"><table class="table table-sm mb-0 table-hover"><thead class="bg-info text-white"><th>#</th><th>Lesson Title</th><th>Lesson Type</th><th>Created At</th><th>Actions</th></thead><tbody id="sub-table-lessons-${lessonId}">`;
+                        parsedArray.forEach(element => {
+                            content +=
+                                `<tr><td>${++cnt}</td><td>${element.supTitle}</td><td>${element.lessonType}</td><td>${element.created_at}</td><td>
+                                <a href="{{ route('Staffcourse.edit', $lesson->courseId) }}" class="btn btn-warning text-primary"><i class=" fas fa-edit"></i></a>
+                                <form action="{{ route('Staffcourse.destroy', $lesson->courseId) }}" method="POST" type="button" class="btn btn-danger p-0"
+                                    onsubmit="return confirm('Delete ?')">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="btn btn-danger m-0">
+                                        <i class=" fas fa-trash"></i>
+                                    </button>
+                                </form>
+                            </td></tr>`;
+                        });
+                        content += `</tbody></table></td>`;
+                        newTr.innerHTML = content;
+                        parentRow.insertAdjacentHTML('afterend', newTr.outerHTML);
+                    } else {
+                        if (subLessonsRow.style.display === 'none') {
+                            subLessonsRow.style.display = 'table-row';
+                        } else {
+                            subLessonsRow.style.display = 'none';
+                        }
+                    }
+                },
+                error: function(eror) {
+                    console.log(eror);
+                }
             });
-        });
+        }
+        $(document).ready(function() {});
     </script>
 @endsection

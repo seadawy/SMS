@@ -58,7 +58,7 @@
                                                         <i class=" fas fa-edit"></i>
                                                     </a>
 
-                                                    <a href="{{ route('StaffLesson', $course->courseId) }}"
+                                                    <a href="{{ route('StaffLesson.course', $course->courseId) }}"
                                                         class="btn btn-rounded btn-outline-info">
                                                         <i class=" fas fa-eye"></i>
                                                     </a>

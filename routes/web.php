@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\Studentcontroller;
 use App\Http\Controllers\Admin\Teachercontroller;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\LessonController;
+use App\Http\Controllers\SupLessonController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -90,4 +91,9 @@ Route::controller(LessonController::class)->group(function () {
     Route::get('/Staff/Lesson/{id}/edit', 'edit')->name('StaffLesson.edit');
     Route::put('/Staff/Lesson/{id}', 'update')->name('StaffLesson.update');
     Route::delete('/Staff/Lesson/{id}', 'destroy')->name('StaffLesson.destroy');
+});
+
+Route::controller(SupLessonController::class)->group(function () {
+    Route::get('/Staff/Lesson/{id}/GetSupLesson', 'index')->name('GetSupLesson');
+
 });

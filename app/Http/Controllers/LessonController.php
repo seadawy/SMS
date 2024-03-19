@@ -62,7 +62,9 @@ class LessonController extends Controller
      */
     public function edit(string $id)
     {
-        return view('staff.lesson.form');
+        $courses = Course::all();
+        $lesson = Lesson::findOrFail($id);
+        return view('staff.lesson.form', ['courses' => $courses, 'lesson' => $lesson]);
     }
 
     /**
@@ -70,6 +72,12 @@ class LessonController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        $validated = $request->validate([
+            'lessonTitle' => 'required',
+            'courseId' => 'required'
+        ]);
+        Lesson::find($id)->update($validated);
+        return redirect()->route('StaffLesson');
 
     }
 
