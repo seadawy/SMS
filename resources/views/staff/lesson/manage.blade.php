@@ -62,12 +62,9 @@
                                                         <i class=" fas fa-plus"></i>
                                                         sub-lesson
                                                     </a>
-                                                    <a href="{{ route('Staffcourse.edit', $lesson->lessonId) }}"
-                                                        class="btn btn-warning text-primary">
-                                                        <i class=" fas fa-eye"></i>
-                                                    </a>
+
                                                     <a href="{{ route('StaffLesson.edit', $lesson->lessonId) }}"
-                                                        class="btn btn-warning text-primary">
+                                                        class="btn btn-outline-info text-prime">
                                                         <i class=" fas fa-edit"></i>
                                                     </a>
 
