@@ -6,14 +6,27 @@ use App\Http\Controllers\Admin\Managercontroller;
 use App\Http\Controllers\Admin\Parentcontroller;
 use App\Http\Controllers\Admin\Studentcontroller;
 use App\Http\Controllers\Admin\Teachercontroller;
+use App\Http\Controllers\Authcontroller;
 use App\Http\Controllers\CourseController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
+Route::get('/teacher/dashboard', function () {
     return view('staff.dashboard');
-})->name('dashboard');
+})->name('teacher.dashboard');
 
 Route::get('/courses', function ($id) {
+
+});
+
+//url auth
+Route::controller(Authcontroller::class)->group(function (){
+    Route::get('/','login');
+    Route::post('/login','Authlogin')->name('login');
+    Route::get('/logout','logout')->name('logout');
+    Route::get('/forgetpassword','forgetpassword')->name('forgetpassword');
+    Route::post('/forgetpass','forgetpass')->name('forgetpass');
+    Route::get('/resetpassword','resetpassword')->name('resetpassword');
+    Route::post('/resetpass','resetpass')->name('resetpass');
 
 });
 //url Manager
@@ -25,7 +38,7 @@ Route::controller(Managercontroller::class)->group(function () {
     Route::get('/manager/{id}/edit', 'edit')->name('manager.edit');
     Route::put('/manager/{id}', 'update')->name('manager.update');
     Route::delete('/manager/{id}', 'destroy')->name('manager.destroy');
-});
+})->middleware('auth::staff');
 // url teacher
 Route::controller(Teachercontroller::class)->group(function () {
     Route::get('/teacher', 'index')->name('teacher');
