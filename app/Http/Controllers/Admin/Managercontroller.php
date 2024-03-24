@@ -7,6 +7,7 @@ use App\Models\Staff;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class Managercontroller extends Controller
 {
@@ -35,8 +36,9 @@ class Managercontroller extends Controller
             'email' => 'required|unique:Staff',
             'password' => 'required|min:6',
         ]);
+        $val['password'] = Hash::make($val['password']);
         $newman = Staff::create($val);
-        User::create(['userId' => $newman->id, 'role' => 'admin']);
+        User::create(['userId' => $newman->userId, 'role' => 'admin']);
         return redirect()->route('manager');
     }
     public function edit($userId)

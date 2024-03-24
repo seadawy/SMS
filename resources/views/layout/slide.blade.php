@@ -3,7 +3,7 @@
         <nav class="sidebar-nav">
             <ul id="sidebarnav">
                 <li class="sidebar-item">
-                    <a class="sidebar-link sidebar-link" href="{{ route('dashboard') }}" aria-expanded="false">
+                    <a class="sidebar-link sidebar-link" href="{{ route('staff.dashboard') }}" aria-expanded="false">
                         <i data-feather="home" class="feather-icon"></i>
                         <span class="hide-menu">Dashboard</span>
                     </a>
@@ -100,9 +100,14 @@
                 <li class="sidebar-item"> <a class="sidebar-link sidebar-link"
                         href="{{ asset('../docs/docs.html') }}" aria-expanded="false"><i data-feather="edit-3"
                             class="feather-icon"></i><span class="hide-menu">Documentation</span></a></li>
-                <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="authentication-login1.html"
-                        aria-expanded="false"><i data-feather="log-out" class="feather-icon"></i><span
-                            class="hide-menu">Logout</span></a></li>
+                <li class="sidebar-item">
+                    <form action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        <button class="btn sidebar-link sidebar-link" type="submit">
+                            <i data-feather="log-out" class="feather-icon"></i><span class="hide-menu">Logout</span>
+                        </button>
+                    </form>
+                </li>
             </ul>
         </nav>
     </div>

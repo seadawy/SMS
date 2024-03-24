@@ -11,6 +11,7 @@ use App\Http\Controllers\CourseController;
 use App\Http\Controllers\LessonController;
 use App\Http\Controllers\SupLessonController;
 use App\Http\Middleware\adminAuth;
+use App\Http\Middleware\teacherAuth;
 use Illuminate\Support\Facades\Route;
 
 
@@ -23,8 +24,8 @@ Route::get('/courses', function ($id) {
 Route::prefix('admin')->middleware(adminAuth::class)->group(
     function () {
         Route::get('/', function () {
-            return view('staff.dashboard');
-        })->name('dashboard');
+            return view('staff.manager.dashboard');
+        })->name('admin.dashboard');
         // url classes
         Route::controller(Classescontroller::class)->group(function () {
             Route::get('/classes', 'index')->name('classes');
@@ -82,7 +83,10 @@ Route::prefix('admin')->middleware(adminAuth::class)->group(
 
     }
 );
-Route::prefix('staff')->group(function () {
+Route::prefix('staff')->middleware(teacherAuth::class)->group(function () {
+    Route::get('/', function () {
+        return view('staff.dashboard');
+    })->name('staff.dashboard');
     // url course teacher
     Route::controller(CourseController::class)->group(function () {
         Route::get('/Courses', 'index')->name('Staffcourse');

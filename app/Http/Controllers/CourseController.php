@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\ClassModel;
 use App\Models\Course;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CourseController extends Controller
 {
@@ -38,8 +39,8 @@ class CourseController extends Controller
             'price' => 'required|numeric',
             'inClass' => 'required',
             'category' => 'required',
-            'createdBy' => 'required',
         ]);
+        $val['createdBy'] = Auth::id();
         Course::create($val);
         return redirect()->route('Staffcourse');
     }

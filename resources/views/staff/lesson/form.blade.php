@@ -11,7 +11,7 @@
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb m-0 p-0">
                             <li class="breadcrumb-item">
-                                <a href="{{ route('dashboard') }}" class="text-muted">Dashboard</a>
+                                <a href="{{ route('staff.dashboard') }}" class="text-muted">Dashboard</a>
                             </li>
                             <li class="breadcrumb-item text-muted" aria-current="page">
                                 <a href="{{ route('StaffLesson') }}" class="text-muted">Lessons</a>

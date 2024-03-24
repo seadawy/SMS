@@ -55,7 +55,8 @@
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Name </label>
                                         <input type="text" name="name" class="form-control" id="exampleInputEmail1"
-                                            placeholder="Enter email" value="{{ isset($teacher) ? $teacher->name : '' }}">
+                                            placeholder="Enter teacher name"
+                                            value="{{ isset($teacher) ? $teacher->name : '' }}">
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Email address</label>

@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class adminAuth
+class teacherAuth
 {
     /**
      * Handle an incoming request.
@@ -15,8 +15,7 @@ class adminAuth
      */
     public function handle(Request $request, Closure $next): Response
     {
-
-        if (!auth()->check() || auth()->user()->role['role'] != 'admin') {
+        if (!auth()->check() || auth()->user()->role['role'] != 'teacher') {
             return redirect()->intended('/');
         }
         return $next($request);

@@ -3,7 +3,7 @@
         <nav class="sidebar-nav">
             <ul id="sidebarnav">
                 <li class="sidebar-item">
-                    <a class="sidebar-link sidebar-link" href="{{ route('manager.dashboard') }}" aria-expanded="false">
+                    <a class="sidebar-link sidebar-link" href="{{ route('admin.dashboard') }}" aria-expanded="false">
                         <i data-feather="home" class="feather-icon"></i>
                         <span class="hide-menu">Dashboard</span>
                     </a>
@@ -22,7 +22,7 @@
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="{{route('manager.create')}}" class="sidebar-link">
+                            <a href="{{ route('manager.create') }}" class="sidebar-link">
                                 <span class="hide-menu"> Create Manager </span>
                             </a>
                         </li>
@@ -40,7 +40,7 @@
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="{{route('teacher.create')}}" class="sidebar-link">
+                            <a href="{{ route('teacher.create') }}" class="sidebar-link">
                                 <span class="hide-menu"> Create teacher </span>
                             </a>
                         </li>
@@ -58,7 +58,7 @@
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="{{route('parent.create')}}" class="sidebar-link">
+                            <a href="{{ route('parent.create') }}" class="sidebar-link">
                                 <span class="hide-menu"> Create parent </span>
                             </a>
                         </li>
@@ -76,7 +76,7 @@
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="{{route('student.create')}}" class="sidebar-link">
+                            <a href="{{ route('student.create') }}" class="sidebar-link">
                                 <span class="hide-menu"> Create student </span>
                             </a>
                         </li>
@@ -94,7 +94,7 @@
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="{{route('classes.create')}}" class="sidebar-link">
+                            <a href="{{ route('classes.create') }}" class="sidebar-link">
                                 <span class="hide-menu"> Create classes </span>
                             </a>
                         </li>
@@ -112,7 +112,7 @@
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="{{route('category.create')}}" class="sidebar-link">
+                            <a href="{{ route('category.create') }}" class="sidebar-link">
                                 <span class="hide-menu"> Create category </span>
                             </a>
                         </li>

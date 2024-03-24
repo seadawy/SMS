@@ -6,7 +6,7 @@
                     class="ti-menu ti-close"></i></a>
             <div class="navbar-brand">
                 <!-- Logo icon -->
-                <a href="{{ route('dashboard') }}">
+                <a href="#">
                     <b class="logo-icon">
                         <!-- Dark Logo icon -->
                         <img src="{{ asset('assets/images/logo-icon.png') }}" alt="homepage" class="dark-logo" />
@@ -106,9 +106,6 @@
                     </div>
                 </li>
                 <!-- End Notification -->
-                <!-- ============================================================== -->
-                <!-- create new -->
-                <!-- ============================================================== -->
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -126,9 +123,8 @@
                         <div class="customize-input">
                             <select class="custom-select form-control bg-white custom-radius custom-shadow border-0">
                                 <option selected>EN</option>
-                                <option value="1">AB</option>
-                                <option value="2">AK</option>
-                                <option value="3">BE</option>
+                                <option value="1">AR</option>
+
                             </select>
                         </div>
                     </a>
