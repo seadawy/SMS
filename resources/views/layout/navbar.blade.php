@@ -134,13 +134,7 @@
                     </a>
                 </li>
             </ul>
-            <!-- ============================================================== -->
-            <!-- Right side toggle and nav items -->
-            <!-- ============================================================== -->
             <ul class="navbar-nav float-right">
-                <!-- ============================================================== -->
-                <!-- Search -->
-                <!-- ============================================================== -->
                 <li class="nav-item d-none d-md-block">
                     <a class="nav-link" href="javascript:void(0)">
                         <form>
@@ -152,16 +146,14 @@
                         </form>
                     </a>
                 </li>
-                <!-- ============================================================== -->
-                <!-- User profile and search -->
-                <!-- ============================================================== -->
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="javascript:void(0)" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">
                         <img src="{{ asset('assets/images/users/profile-pic.jpg') }}" alt="user"
                             class="rounded-circle" width="40">
-                        <span class="ml-2 d-none d-lg-inline-block"><span>Hello,</span> <span class="text-dark">Jason
-                                Doe</span> <i data-feather="chevron-down" class="svg-icon"></i></span>
+                        <span class="ml-2 d-none d-lg-inline-block"><span>Hello,</span> <span
+                                class="text-dark">{{ auth()->user()['name'] }}</span> <i data-feather="chevron-down"
+                                class="svg-icon"></i></span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right user-dd animated flipInY">
                         <a class="dropdown-item" href="javascript:void(0)"><i data-feather="user"
@@ -178,9 +170,13 @@
                                 class="svg-icon mr-2 ml-1"></i>
                             Account Setting</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="javascript:void(0)"><i data-feather="power"
-                                class="svg-icon mr-2 ml-1"></i>
-                            Logout</a>
+                        <form action="{{ route('logout') }}" method="POST">
+                            @csrf
+                            <button class="dropdown-item" type="submit">
+                                <i data-feather="power" class="svg-icon mr-2 ml-1"></i>
+                                Logout
+                            </button>
+                        </form>
                         <div class="dropdown-divider"></div>
                         <div class="pl-4 p-3"><a href="javascript:void(0)" class="btn btn-sm btn-info">View
                                 Profile</a></div>
