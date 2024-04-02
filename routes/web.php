@@ -14,27 +14,16 @@ use App\Http\Middleware\adminAuth;
 use App\Http\Middleware\teacherAuth;
 use Illuminate\Support\Facades\Route;
 
-
-
-Route::get('/courses', function ($id) {
-
-});
+Route::get('/courses', function ($id) {});
 
 //url superAdmin
-Route::prefix('admin')->middleware(adminAuth::class)->group(
-    function () {
+Route::prefix('admin')
+    ->middleware(adminAuth::class)
+    ->group(function () {
         Route::get('/', function () {
             return view('staff.manager.dashboard');
         })->name('admin.dashboard');
-        // url classes
-        Route::controller(Classescontroller::class)->group(function () {
-            Route::get('/classes', 'index')->name('classes');
-            Route::get('/classes/create', 'create')->name('classes.create');
-            Route::post('/classes', 'store')->name('classes.store');
-            Route::get('/classes/{id}/edit', 'edit')->name('classes.edit');
-            Route::put('/classes/{id}', 'update')->name('classes.update');
-            Route::delete('/classes/{id}', 'destroy')->name('classes.destroy');
-        });
+        // url manager 
         Route::controller(Managercontroller::class)->group(function () {
             Route::get('/manager/dashboard', 'dashboard')->name('manager.dashboard');
             Route::get('/manager', 'index')->name('manager');
@@ -71,6 +60,15 @@ Route::prefix('admin')->middleware(adminAuth::class)->group(
             Route::put('/student/{id}', 'update')->name('student.update');
             Route::delete('/student/{id}', 'destroy')->name('student.destroy');
         });
+        // url classes
+        Route::controller(Classescontroller::class)->group(function () {
+            Route::get('/classes', 'index')->name('classes');
+            Route::get('/classes/create', 'create')->name('classes.create');
+            Route::post('/classes', 'store')->name('classes.store');
+            Route::get('/classes/{id}/edit', 'edit')->name('classes.edit');
+            Route::put('/classes/{id}', 'update')->name('classes.update');
+            Route::delete('/classes/{id}', 'destroy')->name('classes.destroy');
+        });
         // url category
         Route::controller(Categoriescontroller::class)->group(function () {
             Route::get('/category', 'index')->name('category');
@@ -80,39 +78,37 @@ Route::prefix('admin')->middleware(adminAuth::class)->group(
             Route::put('/category/{id}', 'update')->name('category.update');
             Route::delete('/category/{id}', 'destroy')->name('category.destroy');
         });
-
-    }
-);
-Route::prefix('staff')->middleware(teacherAuth::class)->group(function () {
-    Route::get('/', function () {
-        return view('staff.dashboard');
-    })->name('staff.dashboard');
-    // url course teacher
-    Route::controller(CourseController::class)->group(function () {
-        Route::get('/Courses', 'index')->name('Staffcourse');
-        Route::get('/Courses/Create', 'create')->name('Staffcourse.create');
-        Route::post('/Courses', 'store')->name('Staffcourse.store');
-        Route::get('/Courses/{id}/edit', 'edit')->name('Staffcourse.edit');
-        Route::put('/Courses/{id}', 'update')->name('Staffcourse.update');
-        Route::delete('/Courses/{id}', 'destroy')->name('Staffcourse.destroy');
     });
-    // url lesson teacher
-    Route::controller(LessonController::class)->group(function () {
-        Route::get('/Course/Lesson/', 'indexAll')->name('StaffLesson');
-        Route::get('/Course/{id}/Lesson/', 'index')->name('StaffLesson.course');
-        Route::get('/Lesson/Create', 'create')->name('StaffLesson.create');
-        Route::post('/Lesson', 'store')->name('StaffLesson.store');
-        Route::get('/Lesson/{id}/edit', 'edit')->name('StaffLesson.edit');
-        Route::put('/Lesson/{id}', 'update')->name('StaffLesson.update');
-        Route::delete('/Lesson/{id}', 'destroy')->name('StaffLesson.destroy');
+Route::prefix('staff')
+    ->middleware(teacherAuth::class)
+    ->group(function () {
+        Route::get('/', function () {
+            return view('staff.dashboard');
+        })->name('staff.dashboard');
+        // url course teacher
+        Route::controller(CourseController::class)->group(function () {
+            Route::get('/Courses', 'index')->name('Staffcourse');
+            Route::get('/Courses/Create', 'create')->name('Staffcourse.create');
+            Route::post('/Courses', 'store')->name('Staffcourse.store');
+            Route::get('/Courses/{id}/edit', 'edit')->name('Staffcourse.edit');
+            Route::put('/Courses/{id}', 'update')->name('Staffcourse.update');
+            Route::delete('/Courses/{id}', 'destroy')->name('Staffcourse.destroy');
+        });
+        // url lesson teacher
+        Route::controller(LessonController::class)->group(function () {
+            Route::get('/Course/Lesson/', 'indexAll')->name('StaffLesson');
+            Route::get('/Course/{id}/Lesson/', 'index')->name('StaffLesson.course');
+            Route::get('/Lesson/Create', 'create')->name('StaffLesson.create');
+            Route::post('/Lesson', 'store')->name('StaffLesson.store');
+            Route::get('/Lesson/{id}/edit', 'edit')->name('StaffLesson.edit');
+            Route::put('/Lesson/{id}', 'update')->name('StaffLesson.update');
+            Route::delete('/Lesson/{id}', 'destroy')->name('StaffLesson.destroy');
+        });
+
+        Route::controller(SupLessonController::class)->group(function () {
+            Route::get('/Lesson/{id}/GetSupLesson', 'index')->name('GetSupLesson');
+        });
     });
-
-    Route::controller(SupLessonController::class)->group(function () {
-        Route::get('/Lesson/{id}/GetSupLesson', 'index')->name('GetSupLesson');
-    });
-
-
-});
 Route::controller(authController::class)->group(function () {
     Route::post('/Login', 'authincate')->name('loginAuth');
     Route::post('/Logout', 'logout')->name('logout');
