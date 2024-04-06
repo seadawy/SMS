@@ -16,11 +16,7 @@ class Studentcontroller extends Controller
 {
     public function index()
     {
-        $data = DB::table('students')
-            ->join('parents', 'parents.parentId', '=', 'students.parentId')
-            ->join('classes', 'classes.classId', '=', 'students.classId')
-            ->select('students.*', 'classes.title', 'parents.fullName')
-            ->get();
+        $data = DB::table('students')->join('parents', 'parents.parentId', '=', 'students.parentId')->join('classes', 'classes.classId', '=', 'students.classId')->select('students.*', 'classes.title', 'parents.fullName')->get();
         //dd($data);
         return view('staff.manager.student.show', ['data' => $data]);
     }
@@ -39,7 +35,7 @@ class Studentcontroller extends Controller
             'password' => 'required|min:6',
             'classId' => 'required',
             'parentId' => 'required',
-            'isActive' => 'required'
+            'isActive' => 'required',
         ]);
         //dd($val);
         $val['profileAvatar'] = 'im';
@@ -63,7 +59,7 @@ class Studentcontroller extends Controller
             'phone' => 'required|min:11',
             'classId' => 'required',
             'parentId' => 'required',
-            'isActive' => 'required'
+            'isActive' => 'required',
         ]);
         $val['profileAvatar'] = 'im';
         Student::where('studentId', '=', $id)->update($val);
