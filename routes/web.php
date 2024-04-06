@@ -18,12 +18,12 @@ Route::get('/courses', function ($id) {});
 
 //url superAdmin
 Route::prefix('admin')
-    ->middleware(adminAuth::class)
+    ->middleware('auth:staff')
     ->group(function () {
         Route::get('/', function () {
             return view('staff.manager.dashboard');
         })->name('admin.dashboard');
-        // url manager 
+        // url manager
         Route::controller(Managercontroller::class)->group(function () {
             Route::get('/manager/dashboard', 'dashboard')->name('manager.dashboard');
             Route::get('/manager', 'index')->name('manager');
@@ -80,7 +80,7 @@ Route::prefix('admin')
         });
     });
 Route::prefix('staff')
-    ->middleware(teacherAuth::class)
+    ->middleware('auth:staff')
     ->group(function () {
         Route::get('/', function () {
             return view('staff.dashboard');

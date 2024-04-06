@@ -20,20 +20,30 @@ class authController extends Controller
         ]);
 
         if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
-            //Auth::login(Auth::user());
             if (Auth::user()->role['role'] == 'admin') {
                 return redirect()->route('admin.dashboard');
             } else {
                 return redirect()->route('staff.dashboard');
             }
+        }else if(Auth::guard('student')->attempt($credentials)){
+            return view('student');
+        }else if(Auth::guard('parent')->attempt($credentials)){
+            return view('parent');
+        }else {
+            return "Wrong email";
         }
 
     }
 
     public function logout(Request $request)
     {
-        Auth::logout();
+        if(Auth::user()){
+            Auth::logout();
+        }else if(Auth::guard('student')->user()){
+            Auth::guard('student')->logout();
+        }else if(Auth::guard('parent')->user()){
+            Auth::guard('parent')->logout();
+        }
         $request->session()->invalidate();
         $request->session()->regenerateToken();
         return redirect('/');
