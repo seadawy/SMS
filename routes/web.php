@@ -112,5 +112,9 @@ Route::prefix('staff')
 Route::controller(authController::class)->group(function () {
     Route::post('/Login', 'authincate')->name('loginAuth');
     Route::post('/Logout', 'logout')->name('logout');
+    Route::get('/forgetpassword','forgetpassword')->name('forgetpassword');
+    Route::post('/forgetpass','forgetpass')->name('forgetpass');
+    Route::get('/resetpassword/{id}','resetpassword')->name('resetpassword');
+    Route::post('/resetpass/{id}','resetpass')->name('resetpass');
 });
 Route::get('/', [authController::class, 'index'])->name('login');

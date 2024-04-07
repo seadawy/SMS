@@ -54,7 +54,7 @@
                                     <button type="submit" class="btn btn-block btn-dark">Sign In</button>
                                 </div>
                                 <div class="col-lg-12 text-center mt-5">
-                                    Don't have an account? <a href="#" class="text-danger">Sign Up</a>
+                                     <a href="{{route('forgetpassword')}}" class="text-danger">Forget password?</a>
                                 </div>
                             </div>
                         </form>
