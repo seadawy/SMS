@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\classes;
+use Illuminate\Support\Facades\Auth;
 use function Laravel\Prompts\table;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -29,7 +30,7 @@ class Classescontroller extends Controller
         $val = $re->validate([
             'title' => 'required',
         ]);
-        $val['createdBy'] = 2;
+        $val['createdBy'] = Auth::user()->userId;
         classes::create($val);
         return redirect()->route('classes');
     }

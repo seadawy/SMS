@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\classes;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class Categoriescontroller extends Controller
@@ -26,7 +27,7 @@ class Categoriescontroller extends Controller
         $val = $re->validate([
             'title'=>'required',
         ]);
-        $val['createdBy']=6;
+        $val['createdBy']=Auth::user()->userId;
         Category::create($val);
         return redirect()->route('category');
     }
