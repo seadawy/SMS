@@ -27,7 +27,7 @@ class Parentcontroller extends Controller
             'phone' => 'required|min:11',
             'address' => 'required|string',
             'password' => 'required|min:6',
-            'isActive' => 'required'
+            'isActive' => 'required',
         ]);
         //dd($val);
         $val['password'] = Hash::make($val['password']);
@@ -47,7 +47,7 @@ class Parentcontroller extends Controller
             'email' => 'required|email',
             'phone' => 'required|min:11',
             'address' => 'required|string',
-            'isActive' => 'required'
+            'isActive' => 'required',
         ]);
         Parents::where('parentId', '=', $id)->update($val);
         return redirect()->route('parent');

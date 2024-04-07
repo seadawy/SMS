@@ -13,10 +13,7 @@ class Classescontroller extends Controller
 {
     public function index()
     {
-        $data = DB::table('classes')
-            ->join('staff', 'staff.userId', '=', 'classes.createdBy')
-            ->select('staff.*', 'classes.*')
-            ->get();
+        $data = DB::table('classes')->join('staff', 'staff.userId', '=', 'classes.createdBy')->select('staff.*', 'classes.*')->get();
         //dd($data);
         return view('staff.manager.class.show', ['data' => $data]);
     }

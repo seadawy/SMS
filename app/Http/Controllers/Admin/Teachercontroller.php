@@ -13,11 +13,7 @@ class Teachercontroller extends Controller
 {
     public function index()
     {
-        $data = DB::table('users')
-            ->where('role', 'teacher')
-            ->join('staff', 'staff.userId', '=', 'users.userId')
-            ->select('staff.*')
-            ->get();
+        $data = DB::table('users')->where('role', 'teacher')->join('staff', 'staff.userId', '=', 'users.userId')->select('staff.*')->get();
         return view('staff.manager.teacher.show', ['data' => $data]);
     }
     public function create()
@@ -29,7 +25,7 @@ class Teachercontroller extends Controller
         $val = $re->validate([
             'name' => 'required',
             'email' => 'required|unique:Staff',
-            'password' => 'required|min:6'
+            'password' => 'required|min:6',
         ]);
         $val['password'] = Hash::make($val['password']);
         $newman = Staff::create($val);
@@ -45,7 +41,7 @@ class Teachercontroller extends Controller
     {
         $val = $re->validate([
             'name' => 'required',
-            'email' => 'required|email'
+            'email' => 'required|email',
         ]);
         Staff::where('userId', '=', $id)->update($val);
         return redirect()->route('teacher');
