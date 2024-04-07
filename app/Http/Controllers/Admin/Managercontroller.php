@@ -18,11 +18,7 @@ class Managercontroller extends Controller
     public function index()
     {
         //$data = Staff::where('role','=','admin')->get();
-        $data = DB::table('users')
-            ->where('role', 'admin')
-            ->join('staff', 'staff.userId', '=', 'users.userId')
-            ->select('staff.*')
-            ->get();
+        $data = DB::table('users')->where('role', 'admin')->join('staff', 'staff.userId', '=', 'users.userId')->select('staff.*')->get();
         return view('staff.manager.manager.Manager', ['data' => $data]);
     }
     public function create()
