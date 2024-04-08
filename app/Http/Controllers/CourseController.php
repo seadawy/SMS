@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
-use App\Models\ClassModel;
+use App\Models\Classes;
 use App\Models\Course;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -25,7 +25,7 @@ class CourseController extends Controller
     public function create()
     {
         $catorgys = Category::all();
-        $classes = ClassModel::all();
+        $classes = Classes::all();
         return view('staff.course.form', ['categorys' => $catorgys, 'classes' => $classes]);
     }
 
@@ -59,7 +59,7 @@ class CourseController extends Controller
     public function edit(string $id)
     {
         $catorgys = Category::all();
-        $classes = ClassModel::all();
+        $classes = Classes::all();
         $course = Course::findOrFail($id);
         return view('staff.course.form', ['categorys' => $catorgys, 'classes' => $classes, 'course' => $course]);
 

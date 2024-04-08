@@ -8,7 +8,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
-class Parentcontroller extends Controller
+class ParentController extends Controller
 {
     public function index()
     {

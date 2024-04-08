@@ -8,8 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class classes extends Model
 {
     use HasFactory;
-    protected $fillable=[
-        'title',
-        'createdBy'
-    ];
+    protected $table = 'classes';
+    protected $primaryKey = 'classId';
+    protected $fillable = ['title', 'createdBy'];
 }
