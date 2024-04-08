@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
-class Teachercontroller extends Controller
+class TeacherController extends Controller
 {
     public function index()
     {
