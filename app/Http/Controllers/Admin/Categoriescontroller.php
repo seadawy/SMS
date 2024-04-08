@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
-class Categoriescontroller extends Controller
+class CategoriesController extends Controller
 {
     public function index(){
         $data = DB::table('categories')

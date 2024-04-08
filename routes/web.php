@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Admin\Categoriescontroller;
+use App\Http\Controllers\Admin\CategoriesController;
 use App\Http\Controllers\Admin\Classescontroller;
 use App\Http\Controllers\Admin\Managercontroller;
 use App\Http\Controllers\Admin\Parentcontroller;
@@ -70,7 +70,7 @@ Route::prefix('admin')
             Route::delete('/classes/{id}', 'destroy')->name('classes.destroy');
         });
         // url category
-        Route::controller(Categoriescontroller::class)->group(function () {
+        Route::controller(CategoriesController::class)->group(function () {
             Route::get('/category', 'index')->name('category');
             Route::get('/category/create', 'create')->name('category.create');
             Route::post('/category', 'store')->name('category.store');
@@ -112,9 +112,9 @@ Route::prefix('staff')
 Route::controller(authController::class)->group(function () {
     Route::post('/Login', 'authincate')->name('loginAuth');
     Route::post('/Logout', 'logout')->name('logout');
-    Route::get('/forgetpassword','forgetpassword')->name('forgetpassword');
-    Route::post('/forgetpass','forgetpass')->name('forgetpass');
-    Route::get('/resetpassword/{id}','resetpassword')->name('resetpassword');
-    Route::post('/resetpass/{id}','resetpass')->name('resetpass');
+    Route::get('/forgetpassword', 'forgetpassword')->name('forgetpassword');
+    Route::post('/forgetpass', 'forgetpass')->name('forgetpass');
+    Route::get('/resetpassword/{id}', 'resetpassword')->name('resetpassword');
+    Route::post('/resetpass/{id}', 'resetpass')->name('resetpass');
 });
 Route::get('/', [authController::class, 'index'])->name('login');
