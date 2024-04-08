@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\classes;
+use App\Models\Classes;
 use App\Models\Parents;
 use App\Models\Staff;
 use App\Models\Student;

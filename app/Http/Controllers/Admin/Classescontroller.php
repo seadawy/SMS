@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\classes;
+use App\Models\Classes;
 use Illuminate\Support\Facades\Auth;
 use function Laravel\Prompts\table;
 use Illuminate\Http\Request;
