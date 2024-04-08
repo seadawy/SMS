@@ -32,33 +32,36 @@
                         <div class="table-responsive">
                             <table id="zero_config" class="table table-striped table-bordered no-wrap">
                                 <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Title</th>
-                                    <th>createdBy</th>
-                                    <th>created_at</th>
-                                    <th>Action</th>
-                                </tr>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Title</th>
+                                        <th>createdBy</th>
+                                        <th>created_at</th>
+                                        <th>Action</th>
+                                    </tr>
                                 </thead>
                                 <tbody>
-                                @foreach ($data as $man)
-                                    <tr>
-                                        <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $man->title }}</td>
-                                        <td>{{ $man->name }}</td>
-                                        <td>{{ $man->created_at }}</td>
-                                        <td>
-                                            <div class="btn-group" role="group" aria-label="Basic example">
-                                                <a href="{{ route('classes.edit',$man->classId)}}" type="button" class="btn btn-warning">Edit</a>
-                                                <form action="{{ route('classes.destroy',$man->classId) }}" method="POST" type="button" class="btn btn-danger p-0" onsubmit="return confirm('Delete?')">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button class="btn btn-danger m-0">Delete</button>
-                                                </form>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                @endforeach
+                                    @foreach ($data as $man)
+                                        <tr>
+                                            <td>{{ $loop->iteration }}</td>
+                                            <td>{{ $man->title }}</td>
+                                            <td>{{ $man->name }}</td>
+                                            <td>{{ $man->created_at }}</td>
+                                            <td>
+                                                <div class="btn-group" role="group" aria-label="Basic example">
+                                                    <a href="{{ route('classes.edit', $man->classId) }}" type="button"
+                                                        class="btn btn-warning">Edit</a>
+                                                    <form action="{{ route('classes.destroy', $man->classId) }}"
+                                                        method="POST" type="button" class="btn btn-danger p-0"
+                                                        onsubmit="return confirm('Delete?')">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button class="btn btn-danger m-0">Delete</button>
+                                                    </form>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -72,5 +75,6 @@
 
 @section('moreJs')
     <script src="{{ asset('assets/extra-libs/datatables.net/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('assets/extra-libs/datatables.net-bs4/js/dataTables.responsive.min.js') }}"></script>
     <script src="{{ asset('dist/js/pages/datatable/datatable-basic.init.js') }}"></script>
 @endsection

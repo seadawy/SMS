@@ -32,31 +32,34 @@
                         <div class="table-responsive">
                             <table id="zero_config" class="table table-striped table-bordered no-wrap">
                                 <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Name</th>
-                                    <th>email</th>
-                                    <th>Action</th>
-                                </tr>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Name</th>
+                                        <th>email</th>
+                                        <th>Action</th>
+                                    </tr>
                                 </thead>
                                 <tbody>
-                                @foreach ($data as $man)
-                                    <tr>
-                                        <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $man->name }}</td>
-                                        <td>{{ $man->email }}</td>
-                                        <td>
-                                            <div class="btn-group" role="group" aria-label="Basic example">
-                                                <a href="{{ route('teacher.edit',$man->userId)}}" type="button" class="btn btn-warning">Edit</a>
-                                                <form action="{{ route('teacher.destroy',$man->userId) }}" method="POST" type="button" class="btn btn-danger p-0" onsubmit="return confirm('Delete?')">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button class="btn btn-danger m-0">Delete</button>
-                                                </form>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                @endforeach
+                                    @foreach ($data as $man)
+                                        <tr>
+                                            <td>{{ $loop->iteration }}</td>
+                                            <td>{{ $man->name }}</td>
+                                            <td>{{ $man->email }}</td>
+                                            <td>
+                                                <div class="btn-group" role="group" aria-label="Basic example">
+                                                    <a href="{{ route('teacher.edit', $man->userId) }}" type="button"
+                                                        class="btn btn-warning">Edit</a>
+                                                    <form action="{{ route('teacher.destroy', $man->userId) }}"
+                                                        method="POST" type="button" class="btn btn-danger p-0"
+                                                        onsubmit="return confirm('Delete?')">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button class="btn btn-danger m-0">Delete</button>
+                                                    </form>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -70,5 +73,6 @@
 
 @section('moreJs')
     <script src="{{ asset('assets/extra-libs/datatables.net/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('assets/extra-libs/datatables.net-bs4/js/dataTables.responsive.min.js') }}"></script>
     <script src="{{ asset('dist/js/pages/datatable/datatable-basic.init.js') }}"></script>
 @endsection

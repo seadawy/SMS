@@ -10,11 +10,10 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\LessonController;
 use App\Http\Controllers\SupLessonController;
+use App\Http\Controllers\MessageController;
 use App\Http\Middleware\adminAuth;
 use App\Http\Middleware\teacherAuth;
 use Illuminate\Support\Facades\Route;
-
-Route::get('/courses', function ($id) {});
 
 //url superAdmin
 Route::prefix('admin')
@@ -79,6 +78,7 @@ Route::prefix('admin')
             Route::delete('/category/{id}', 'destroy')->name('category.destroy');
         });
     });
+
 Route::prefix('staff')
     ->middleware('auth:staff')
     ->group(function () {
@@ -109,6 +109,7 @@ Route::prefix('staff')
             Route::get('/Lesson/{id}/GetSupLesson', 'index')->name('GetSupLesson');
         });
     });
+
 Route::controller(AuthController::class)->group(function () {
     Route::get('/', 'index')->name('login');
     Route::post('/Login', 'authincate')->name('loginAuth');
@@ -117,4 +118,8 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('/forgetpass', 'forgetpass')->name('forgetpass');
     Route::get('/resetpassword/{id}', 'resetpassword')->name('resetpassword');
     Route::post('/resetpass/{id}', 'resetpass')->name('resetpass');
+});
+
+Route::controller(MessageController::class)->group(function () {
+    Route::get('/Message/Center', 'index')->name('chatCenter');
 });

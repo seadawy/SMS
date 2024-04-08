@@ -30,66 +30,68 @@ class AuthController extends Controller
             } else {
                 return redirect()->route('staff.dashboard');
             }
-        }else if(Auth::guard('student')->attempt($credentials)){
+        } elseif (Auth::guard('student')->attempt($credentials)) {
             return view('student');
-        }else if(Auth::guard('parent')->attempt($credentials)){
+        } elseif (Auth::guard('parent')->attempt($credentials)) {
             return view('parent');
-        }else {
-            return "Wrong email";
+        } else {
+            return 'Wrong email';
         }
-
     }
 
     public function logout(Request $request)
     {
-        if(Auth::user()){
+        if (Auth::user()) {
             Auth::logout();
-        }else if(Auth::guard('student')->user()){
+        } elseif (Auth::guard('student')->user()) {
             Auth::guard('student')->logout();
-        }else if(Auth::guard('parent')->user()){
+        } elseif (Auth::guard('parent')->user()) {
             Auth::guard('parent')->logout();
         }
         $request->session()->invalidate();
         $request->session()->regenerateToken();
         return redirect('/');
     }
-    public function forgetpassword(){
-        return view('forgetpassword');
+    public function forgetpassword()
+    {
+        return view('auth.forgetpassword');
     }
-    public function forgetpass(Request $request){
-        if(Staff::where('email','=',$request->email)->first()){
-            $data = Staff::where('email','=',$request->email)->first();
+    public function forgetpass(Request $request)
+    {
+        if (Staff::where('email', '=', $request->email)->first()) {
+            $data = Staff::where('email', '=', $request->email)->first();
             $data->id = $data->userId;
-        }else  if(Student::where('email','=',$request->email)->first()){
-            $data = Student::where('email','=',$request->email)->first();
+        } elseif (Student::where('email', '=', $request->email)->first()) {
+            $data = Student::where('email', '=', $request->email)->first();
             $data->id = $data->studentId;
-        }else  if(Parents::where('email','=',$request->email)->first()){
-            $data = Parents::where('email','=',$request->email)->first();
+        } elseif (Parents::where('email', '=', $request->email)->first()) {
+            $data = Parents::where('email', '=', $request->email)->first();
             $data->id = $data->parentId;
         }
-        if(!empty($data)){
+        if (!empty($data)) {
             Mail::to($data->email)->send(new forgitpassword($data));
-            return redirect()->back()->with('Success','Reset password');
-        }else{
-            return redirect()->back()->with('error','email not found');
+            return redirect()->back()->with('Success', 'Reset password');
+        } else {
+            return redirect()->back()->with('error', 'email not found');
         }
     }
-    public function resetpassword($id){
-        return view('resetpassword',['id'=>$id]);
+    public function resetpassword($id)
+    {
+        return view('resetpassword', ['id' => $id]);
     }
-    public function resetpass(Request $request,$id){
+    public function resetpass(Request $request, $id)
+    {
         $val = $request->validate([
             'password' => 'required|confirmed|min:6',
-            'password_confirmation' => 'required'
+            'password_confirmation' => 'required',
         ]);
-        if(Staff::where('userId','=',$id)->first()){
-            $data = Staff::where('userId','=',$id)->Update(['password'=>$request->password]);
-        }else  if(Student::where('studentId','=',$id)->first()){
-            $data = Student::where('studentId','=',$id)->Update(['password'=>$request->password]);
-        }else  if(Parents::where('parentId','=',$id)->first()){
-            $data = Parents::where('parentId','=',$id)->Update(['password'=>$request->password]);
+        if (Staff::where('userId', '=', $id)->first()) {
+            $data = Staff::where('userId', '=', $id)->Update(['password' => $request->password]);
+        } elseif (Student::where('studentId', '=', $id)->first()) {
+            $data = Student::where('studentId', '=', $id)->Update(['password' => $request->password]);
+        } elseif (Parents::where('parentId', '=', $id)->first()) {
+            $data = Parents::where('parentId', '=', $id)->Update(['password' => $request->password]);
         }
         return redirect()->route('login');
     }
-
 }
