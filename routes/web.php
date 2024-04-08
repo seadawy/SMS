@@ -6,7 +6,7 @@ use App\Http\Controllers\Admin\Managercontroller;
 use App\Http\Controllers\Admin\Parentcontroller;
 use App\Http\Controllers\Admin\Studentcontroller;
 use App\Http\Controllers\Admin\Teachercontroller;
-use App\Http\Controllers\authController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\LessonController;
 use App\Http\Controllers\SupLessonController;
@@ -109,12 +109,12 @@ Route::prefix('staff')
             Route::get('/Lesson/{id}/GetSupLesson', 'index')->name('GetSupLesson');
         });
     });
-Route::controller(authController::class)->group(function () {
+Route::controller(AuthController::class)->group(function () {
+    Route::get('/', 'index')->name('login');
     Route::post('/Login', 'authincate')->name('loginAuth');
     Route::post('/Logout', 'logout')->name('logout');
-    Route::get('/forgetpassword','forgetpassword')->name('forgetpassword');
-    Route::post('/forgetpass','forgetpass')->name('forgetpass');
-    Route::get('/resetpassword/{id}','resetpassword')->name('resetpassword');
-    Route::post('/resetpass/{id}','resetpass')->name('resetpass');
+    Route::get('/forgetpassword', 'forgetpassword')->name('forgetpassword');
+    Route::post('/forgetpass', 'forgetpass')->name('forgetpass');
+    Route::get('/resetpassword/{id}', 'resetpassword')->name('resetpassword');
+    Route::post('/resetpass/{id}', 'resetpass')->name('resetpass');
 });
-Route::get('/', [authController::class, 'index'])->name('login');
