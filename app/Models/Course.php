@@ -10,7 +10,7 @@ class Course extends Model
     use HasFactory;
     public function class ()
     {
-        return $this->belongsTo(ClassModel::class, 'inClass', 'classId');
+        return $this->belongsTo(Classes::class, 'inClass', 'classId');
     }
 
     public function categoryF()
