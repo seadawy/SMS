@@ -2,9 +2,9 @@
 
 use App\Http\Controllers\Admin\CategoriesController;
 use App\Http\Controllers\Admin\ClassesController;
-use App\Http\Controllers\Admin\Managercontroller;
-use App\Http\Controllers\Admin\Parentcontroller;
-use App\Http\Controllers\Admin\Studentcontroller;
+use App\Http\Controllers\Admin\ManagerController;
+use App\Http\Controllers\Admin\ParentController;
+use App\Http\Controllers\Admin\StudentController;
 use App\Http\Controllers\Admin\Teachercontroller;
 use App\Http\Controllers\authController;
 use App\Http\Controllers\CourseController;
@@ -24,7 +24,7 @@ Route::prefix('admin')
             return view('staff.manager.dashboard');
         })->name('admin.dashboard');
         // url manager
-        Route::controller(Managercontroller::class)->group(function () {
+        Route::controller(ManagerController::class)->group(function () {
             Route::get('/manager/dashboard', 'dashboard')->name('manager.dashboard');
             Route::get('/manager', 'index')->name('manager');
             Route::get('/manager/create', 'create')->name('manager.create');
@@ -43,7 +43,7 @@ Route::prefix('admin')
             Route::delete('/teacher/{id}', 'destroy')->name('teacher.destroy');
         });
         // url parent
-        Route::controller(Parentcontroller::class)->group(function () {
+        Route::controller(ParentController::class)->group(function () {
             Route::get('/parent', 'index')->name('parent');
             Route::get('/parent/create', 'create')->name('parent.create');
             Route::post('/parent', 'store')->name('parent.store');
@@ -52,7 +52,7 @@ Route::prefix('admin')
             Route::delete('/parent/{id}', 'destroy')->name('parent.destroy');
         });
         // url student
-        Route::controller(Studentcontroller::class)->group(function () {
+        Route::controller(StudentController::class)->group(function () {
             Route::get('/student', 'index')->name('student');
             Route::get('/student/create', 'create')->name('student.create');
             Route::post('/student', 'store')->name('student.store');
