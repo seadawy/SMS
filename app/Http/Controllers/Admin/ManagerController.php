@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
-class Managercontroller extends Controller
+class ManagerController extends Controller
 {
     public function dashboard()
     {
