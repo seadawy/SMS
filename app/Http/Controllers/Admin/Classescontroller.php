@@ -9,7 +9,7 @@ use function Laravel\Prompts\table;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class Classescontroller extends Controller
+class ClassesController extends Controller
 {
     public function index()
     {

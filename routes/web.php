@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\CategoriesController;
-use App\Http\Controllers\Admin\Classescontroller;
+use App\Http\Controllers\Admin\ClassesController;
 use App\Http\Controllers\Admin\Managercontroller;
 use App\Http\Controllers\Admin\Parentcontroller;
 use App\Http\Controllers\Admin\Studentcontroller;
@@ -61,7 +61,7 @@ Route::prefix('admin')
             Route::delete('/student/{id}', 'destroy')->name('student.destroy');
         });
         // url classes
-        Route::controller(Classescontroller::class)->group(function () {
+        Route::controller(ClassesController::class)->group(function () {
             Route::get('/classes', 'index')->name('classes');
             Route::get('/classes/create', 'create')->name('classes.create');
             Route::post('/classes', 'store')->name('classes.store');
