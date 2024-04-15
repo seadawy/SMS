@@ -45,19 +45,19 @@
                             @method('PUT')
                         @endif
                         <div class="card-body">
-                            <div class="form-group">
+                            <div class="form-group mb-3">
                                 <label for="exampleInputtitle1">Title </label>
                                 <input type="text" name="title" value="{{ isset($course) ? $course->title : '' }}"
                                     class="form-control" id="exampleInputtitle1" placeholder="Enter course title">
                             </div>
-                            <div class="form-group">
+                            <div class="form-group mb-3">
                                 <label for="exampleInputPrice1">Price</label>
                                 <input type="text" name="price" value="{{ isset($course) ? $course->price : '' }}"
                                     class="form-control" id="exampleInputEmail1" placeholder="Enter Price">
                             </div>
-                            <div class="form-group">
+                            <div class="form-group mb-3">
                                 <label class="mr-sm-2" for="inlineFormCustomSelect">Select Category</label>
-                                <select class="custom-select mr-sm-2" name="category" id="inlineFormCustomSelect">
+                                <select class="form-select mr-sm-2" name="category" id="inlineFormCustomSelect">
                                     <option value="" selected>Choose...</option>
                                     @foreach ($categorys as $category)
                                         <option value="{{ $category->categoryId }}"
@@ -68,7 +68,7 @@
                             </div>
                             <div class="form-group">
                                 <label class="mr-sm-2" for="inlineFormCustomSelect">Select Class Added To</label>
-                                <select class="custom-select mr-sm-2" name="inClass" id="inlineFormCustomSelect">
+                                <select class="form-select mr-sm-2" name="inClass" id="inlineFormCustomSelect">
                                     <option value="" selected>Choose...</option>
                                     @foreach ($classes as $clas)
                                         <option value="{{ $clas->classId }}"
@@ -79,7 +79,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="card-footer text-right">
+                        <div class="card-footer text-end ">
                             <button type="submit" class="btn btn-primary btn btn-lg btn-primary">
                                 {{ isset($course) ? 'Update' : 'Add New' }} Course
                             </button>

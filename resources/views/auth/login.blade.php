@@ -37,24 +37,24 @@
                             @csrf
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <div class="form-group">
-                                        <label class="text-dark" for="email">email</label>
+                                    <div class="form-group mb-3">
+                                        <label class="text-dark" for="email">Email</label>
                                         <input class="form-control" id="email" name="email"type="text"
                                             placeholder="enter your email">
                                     </div>
                                 </div>
                                 <div class="col-lg-12">
-                                    <div class="form-group">
+                                    <div class="form-group mb-3">
                                         <label class="text-dark" for="password">Password</label>
                                         <input class="form-control" id="password" name="password" type="password"
                                             placeholder="enter your password">
                                     </div>
                                 </div>
                                 <div class="col-lg-12 text-center">
-                                    <button type="submit" class="btn btn-block btn-dark">Sign In</button>
+                                    <button type="submit" class="btn w-100 btn-dark">Sign In</button>
                                 </div>
                                 <div class="col-lg-12 text-center mt-5">
-                                     <a href="{{route('forgetpassword')}}" class="text-danger">Forget password?</a>
+                                    <a href="{{ route('forgetpassword') }}" class="text-danger">Forget password?</a>
                                 </div>
                             </div>
                         </form>

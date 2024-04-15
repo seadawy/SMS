@@ -47,7 +47,7 @@
                             @method('PUT')
                         @endif
                         <div class="card-body">
-                            <div class="form-group">
+                            <div class="form-group mb-3">
                                 <label for="exampleInputtitle1">Title </label>
                                 <input type="text" name="lessonTitle"
                                     value="{{ isset($lesson) ? $lesson->lessonTitle : '' }}" class="form-control"
@@ -55,7 +55,7 @@
                             </div>
                             <div class="form-group">
                                 <label class="mr-sm-2" for="inlineFormCustomSelect">Course Added To</label>
-                                <select class="custom-select mr-sm-2" name="courseId" id="inlineFormCustomSelect">
+                                <select class="form-select mr-sm-2" name="courseId" id="inlineFormCustomSelect">
                                     <option value="" selected>Choose...</option>
                                     @foreach ($courses as $course)
                                         <option value="{{ $course->courseId }}"
@@ -67,7 +67,7 @@
                             </div>
                             <input type="hidden" name="createdBy" value="1">
                         </div>
-                        <div class="card-footer text-right">
+                        <div class="card-footer text-end">
                             <button type="submit" class="btn btn-lg btn-primary">
                                 {{ isset($lesson) ? 'Update' : 'Add New' }} lessson
                             </button>

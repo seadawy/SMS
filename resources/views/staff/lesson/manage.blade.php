@@ -43,44 +43,48 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($lessons as $lesson)
-                                        <tr>
-                                            <td>
-                                                <button class="btn btn-info"
-                                                    onclick="getSupLessons({{ $lesson->lessonId }})">
-                                                    show N Sub-lessons
-                                                </button>
-                                            </td>
-                                            <td>{{ $lesson->lessonTitle }}</td>
-                                            <td>{{ $lesson->AtCourse->title }}</td>
-                                            <td>{{ $lesson->CreatedBy->name }}</td>
-                                            <td>{{ $lesson->created_at->toDateString() }}</td>
-                                            <td>
-                                                <div class="btn-group" role="group" aria-label="actions buttons">
-                                                    <a href="{{ route('Staffcourse.edit', $lesson->lessonId) }}"
-                                                        class="btn btn-success font-weight-bold">
-                                                        <i class=" fas fa-plus"></i>
-                                                        sub-lesson
-                                                    </a>
+                                    @if (empty($lessons))
+                                        @foreach ($lessons as $lesson)
+                                            <tr>
+                                                <td>
+                                                    <button class="btn btn-info"
+                                                        onclick="getSupLessons({{ $lesson->lessonId }})">
+                                                        show N Sub-lessons
+                                                    </button>
+                                                </td>
+                                                <td>{{ $lesson->lessonTitle }}</td>
+                                                <td>{{ $lesson->AtCourse->title }}</td>
+                                                <td>{{ $lesson->CreatedBy->name }}</td>
+                                                <td>{{ $lesson->created_at->toDateString() }}</td>
+                                                <td>
+                                                    <div class="btn-group" role="group" aria-label="actions buttons">
+                                                        <a href="{{ route('Staffcourse.edit', $lesson->lessonId) }}"
+                                                            class="btn btn-success font-weight-bold">
+                                                            <i class=" fas fa-plus"></i>
+                                                            sub-lesson
+                                                        </a>
 
-                                                    <a href="{{ route('StaffLesson.edit', $lesson->lessonId) }}"
-                                                        class="btn btn-outline-info text-prime">
-                                                        <i class=" fas fa-edit"></i>
-                                                    </a>
+                                                        <a href="{{ route('StaffLesson.edit', $lesson->lessonId) }}"
+                                                            class="btn btn-outline-info text-prime">
+                                                            <i class=" fas fa-edit"></i>
+                                                        </a>
 
-                                                    <form action="{{ route('StaffLesson.destroy', $lesson->lessonId) }}"
-                                                        method="POST" type="button" class="btn btn-danger p-0"
-                                                        onsubmit="return confirm('Delete ?')">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button class="btn btn-danger m-0">
-                                                            <i class=" fas fa-trash"></i>
-                                                        </button>
-                                                    </form>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    @endforeach
+                                                        <form action="{{ route('StaffLesson.destroy', $lesson->lessonId) }}"
+                                                            method="POST" type="button" class="btn btn-danger p-0"
+                                                            onsubmit="return confirm('Delete ?')">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button class="btn btn-danger m-0">
+                                                                <i class=" fas fa-trash"></i>
+                                                            </button>
+                                                        </form>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    @else
+                                        <tr>No data</tr>
+                                    @endif
                                 </tbody>
                                 <tfoot>
                                     <tr>
@@ -153,6 +157,5 @@
                 }
             });
         }
-        $(document).ready(function() {});
     </script>
 @endsection

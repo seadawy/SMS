@@ -15,7 +15,7 @@ class CourseController extends Controller
      */
     public function index()
     {
-        $data = Course::all();
+        $data = Course::where('createdBy', auth()->id())->get();
         return view('staff.course.manage', ['courses' => $data]);
     }
 
@@ -62,7 +62,6 @@ class CourseController extends Controller
         $classes = Classes::all();
         $course = Course::findOrFail($id);
         return view('staff.course.form', ['categorys' => $catorgys, 'classes' => $classes, 'course' => $course]);
-
     }
 
     /**
